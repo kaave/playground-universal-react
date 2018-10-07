@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require('fs-extra');
 const webpack = require('webpack');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const NodemonPlugin = require('nodemon-webpack-plugin');
 
 const { entry, output, resolve, rules, plugins, optimization } = require('../base');
 
@@ -43,6 +44,7 @@ module.exports = {
     ...plugins,
     new webpack.NamedModulesPlugin(),
     new ForkTsCheckerWebpackPlugin(),
+    new NodemonPlugin(),
   ],
   module: {
     rules: [...rules, ...appendRules],

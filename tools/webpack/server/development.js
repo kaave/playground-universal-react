@@ -35,8 +35,9 @@ module.exports = {
   plugins: [
     ...plugins,
     new webpack.NamedModulesPlugin(),
+    new webpack.BannerPlugin({ banner: 'require("source-map-support").install();', raw: true, entryOnly: false }),
     new ForkTsCheckerWebpackPlugin(),
-    new NodemonPlugin(),
+    new NodemonPlugin({ nodeArgs: ['--inspect'] }),
   ],
   module: {
     rules: [...rules, ...appendRules],

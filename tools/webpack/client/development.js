@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 const conf = require('../../config');
 const { resolve, rules, plugins, optimization } = require('../base');
@@ -26,7 +27,10 @@ module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
   entry: {
-    index: path.join(process.cwd(), 'src', 'entryPoints', 'index'),
+    index: [
+      'webpack-hot-middleware/client',
+      path.join(process.cwd(), 'src', 'entryPoints', 'index'),
+    ],
   },
   output: {
     path: path.join(process.cwd(), '.tmp', 'client'),
@@ -40,16 +44,19 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new ForkTsCheckerWebpackPlugin(),
+    new BrowserSyncPlugin(
+      {
+        host: 'localhost',
+        port: 3000,
+        files: ['src/views/**/*.ejs'],
+        proxy: 'http://localhost:8880',
+      },
+      {
+        reload: false,
+      },
+    ),
   ],
   module: {
     rules: [...rules, ...appendRules],
-  },
-  devServer: {
-    publicPath: publicPath,
-    contentBase: [
-      path.join(process.cwd(), '.tmp'),
-      path.join(process.cwd(), 'assets'),
-    ],
-    port: 13000,
   },
 };

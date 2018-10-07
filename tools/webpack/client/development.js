@@ -1,8 +1,9 @@
+const path = require('path');
 const webpack = require('webpack');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const conf = require('../../config');
-const { entry, output, resolve, rules, plugins, optimization } = require('../base');
+const { resolve, rules, plugins, optimization } = require('../base');
 
 const appendRules = [
   {
@@ -19,35 +20,36 @@ const appendRules = [
   },
   { test: /\.js$/, use: 'source-map-loader', enforce: 'pre' },
 ];
+const publicPath = '/';
 
 module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
-  entry: Object.entries(entry).reduce(
-    (tmp, [key, value]) => {
-      tmp[key] = [
-        `webpack-dev-server/client?http://localhost:${conf.port.webpackDevServer}`,
-        'webpack/hot/only-dev-server',
-        ...(value instanceof Array ? value : [value]),
-      ];
-      return tmp;
-    },
-    {},
-  ),
-  output,
+  entry: {
+    index: path.join(process.cwd(), 'src', 'entryPoints', 'index'),
+  },
+  output: {
+    path: path.join(process.cwd(), '.tmp', 'client'),
+    filename: '[name].js',
+    publicPath,
+  },
   resolve,
   optimization,
   plugins: [
     ...plugins,
     new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new ForkTsCheckerWebpackPlugin(),
   ],
   module: {
     rules: [...rules, ...appendRules],
   },
   devServer: {
-    publicPath: output.publicPath,
-    contentBase: [conf.path.dest.development, conf.path.assets],
-    port: conf.port.webpackDevServer,
+    publicPath: publicPath,
+    contentBase: [
+      path.join(process.cwd(), '.tmp'),
+      path.join(process.cwd(), 'assets'),
+    ],
+    port: 13000,
   },
 };

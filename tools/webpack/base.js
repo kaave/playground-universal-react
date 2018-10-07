@@ -42,3 +42,10 @@ exports.plugins = [
     NODE_ENV: JSON.stringify(process.env.NODE_ENV),
   }),
 ];
+
+exports.optimization = {
+  splitChunks: {
+    name: 'vendor.bundle',
+    chunks: 'initial',
+  }
+};

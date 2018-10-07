@@ -5,7 +5,7 @@ const LicenseInfoWebpackPlugin = require('license-info-webpack-plugin').default;
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
-const { entry, output, resolve, rules, plugins, optimization } = require('../base');
+const { resolve, rules, plugins, optimization } = require('../base');
 
 const tsconfigPath = path.join(process.cwd(), 'tools', 'tsconfig', 'client.production.json');
 const appendRules = [
@@ -24,10 +24,18 @@ const appendRules = [
   },
 ];
 
+const publicPath = '/';
+
 module.exports = {
   mode: 'production',
-  entry,
-  output,
+  entry: {
+    index: path.join(process.cwd(), 'src', 'entryPoints', 'index'),
+  },
+  output: {
+    path: path.join(process.cwd(), 'build', 'client'),
+    filename: '[name].js',
+    publicPath,
+  },
   resolve: { ...resolve, plugins: [
     new TsconfigPathsPlugin({ configFile: tsconfigPath }),
   ]},

@@ -2,9 +2,11 @@ const path = require('path');
 const webpack = require('webpack');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const NodeExternals = require('webpack-node-externals');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const { resolve, rules, plugins } = require('../base');
 
+const tsconfigPath = path.join(process.cwd(), 'tools', 'tsconfig', 'server.production.json');
 const appendRules = [
   {
     test: /\.tsx?$/,
@@ -13,7 +15,7 @@ const appendRules = [
       {
         loader: 'ts-loader',
         options: {
-          configFile: path.join(process.cwd(), 'tools', 'tsconfig', 'server.production.json'),
+          configFile: tsconfigPath,
           transpileOnly: true
         },
       },
@@ -29,7 +31,9 @@ module.exports = {
     path: path.join(process.cwd(), 'build'),
     filename: 'server.js',
   },
-  resolve,
+  resolve: { ...resolve, plugins: [
+    new TsconfigPathsPlugin({ configFile: tsconfigPath }),
+  ]},
   optimization: {
     minimize: false
   },
@@ -37,7 +41,7 @@ module.exports = {
   plugins: [
     ...plugins,
     new webpack.NamedModulesPlugin(),
-    new ForkTsCheckerWebpackPlugin(),
+    new ForkTsCheckerWebpackPlugin({ tsconfig: tsconfigPath }),
   ],
   module: {
     rules: [...rules, ...appendRules],

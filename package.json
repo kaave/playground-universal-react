@@ -5,7 +5,8 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack --watch --config tools/webpack/server/development"
+    "start": "cross-env NODE_ENV=development webpack --watch --config tools/webpack/server/development",
+    "build": "cross-env NODE_ENV=production webpack --config tools/webpack/server/production"
   },
   "dependencies": {
     "dotenv": "^6.0.0",
@@ -24,6 +25,7 @@
     "@types/fs-extra": "^5.0.4",
     "@types/lodash-es": "^4.17.1",
     "@types/webpack": "^4.4.14",
+    "@types/webpack-node-externals": "^1.6.3",
     "autoprefixer": "^9.1.5",
     "cross-env": "^5.2.0",
     "css-loader": "^1.0.0",
@@ -50,6 +52,7 @@
     "tslint-plugin-prettier": "^2.0.0",
     "tslint-react": "^3.6.0",
     "typescript": "^3.1.1",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "webpack-node-externals": "^1.7.2"
   }
 }

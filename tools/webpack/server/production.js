@@ -1,8 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
-const NodeExternals = require('webpack-node-externals');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const NodemonPlugin = require('nodemon-webpack-plugin');
+const NodeExternals = require('webpack-node-externals');
 
 const { resolve, rules, plugins } = require('../base');
 
@@ -14,33 +13,34 @@ const appendRules = [
       {
         loader: 'ts-loader',
         options: {
+          configFile: path.join(process.cwd(), 'tools', 'tsconfig', 'server.production.json'),
           transpileOnly: true
         },
       },
     ],
   },
-  { test: /\.js$/, use: 'source-map-loader', enforce: 'pre' },
 ];
 
 module.exports = {
-  mode: 'development',
-  devtool: 'inline-source-map',
+  mode: 'production',
   target: 'node',
   entry: path.join(process.cwd(), 'src', 'server', 'index'),
   output: {
-    path: path.join(process.cwd(), '.tmp'),
+    path: path.join(process.cwd(), 'build'),
     filename: 'server.js',
   },
   resolve,
+  optimization: {
+    minimize: false
+  },
+  externals: NodeExternals(),
   plugins: [
     ...plugins,
     new webpack.NamedModulesPlugin(),
     new ForkTsCheckerWebpackPlugin(),
-    new NodemonPlugin(),
   ],
   module: {
     rules: [...rules, ...appendRules],
   },
-  externals: NodeExternals(),
 };
 

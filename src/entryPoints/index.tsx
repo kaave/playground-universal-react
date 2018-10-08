@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render } from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import { fromEvent } from 'rxjs';
 import format from 'date-fns/format';
 
@@ -7,12 +7,12 @@ import { author } from '../consts';
 import App from '../containers/App';
 
 fromEvent(window, 'DOMContentLoaded').subscribe(() => {
-  console.log(format(new Date()), 'DOMContentLoaded');
+  const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate;
   const mountPoint = document.getElementById('mount-point');
   if (!mountPoint) {
     return;
   }
 
-  render(<App />, mountPoint);
+  renderMethod(<App />, mountPoint);
 });
 console.log('created by', author);

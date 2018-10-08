@@ -329,6 +329,11 @@
     "@types/memory-fs" "*"
     "@types/webpack" "*"
 
+"@types/webpack-env@^1.13.6":
+  version "1.13.6"
+  resolved "https://registry.yarnpkg.com/@types/webpack-env/-/webpack-env-1.13.6.tgz#128d1685a7c34d31ed17010fc87d6a12c1de6976"
+  integrity sha512-5Th3OsZ4gTRdr9Mho83BQ23cex4sRhOR4XTG+m+cJc0FhtUBK9Vn62hBJ+pnQYnSxoPOsKoAPOx6FcphxBC8ng==
+
 "@types/webpack-hot-middleware@^2.16.4":
   version "2.16.4"
   resolved "https://registry.yarnpkg.com/@types/webpack-hot-middleware/-/webpack-hot-middleware-2.16.4.tgz#258ecf2ae0ee80a988cc65547b24608fe10be440"

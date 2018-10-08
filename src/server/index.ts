@@ -3,6 +3,8 @@ import * as Dotenv from 'dotenv';
 import * as express from 'express';
 import { Express } from 'express';
 
+import router from './routes/';
+
 Dotenv.load();
 
 function initializeDevServer(expressApp: Express) {
@@ -35,8 +37,6 @@ app.set('views', 'src/views');
 
 app.use(express.static('./assets'));
 
-app.use('*', (req, res) => {
-  res.render('./index.ejs');
-});
+app.use('*', router);
 
 app.listen(port, () => console.log(`start: port[${port}]`));

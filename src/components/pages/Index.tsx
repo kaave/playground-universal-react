@@ -5,7 +5,7 @@ export default function IndexPage(): JSX.Element {
   return (
     <section className="Index">
       index
-      <Link to={'/demo/'}>to demo</Link>
+      <Link to={'/demo'}>to demo</Link>
     </section>
   );
 }

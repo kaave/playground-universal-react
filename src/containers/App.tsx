@@ -19,7 +19,7 @@ export default class App extends React.Component<Props, State> {
   }
 
   startCountup() {
-    setInterval(() => this.setState({ ...this.state, counter: this.state.counter + 1 }), 100);
+    setInterval(() => this.setState({ ...this.state, counter: this.state.counter + 1 }), 1000);
   }
 
   render() {

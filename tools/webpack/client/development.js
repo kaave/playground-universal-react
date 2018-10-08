@@ -46,6 +46,7 @@ module.exports = {
     new ForkTsCheckerWebpackPlugin(),
     new BrowserSyncPlugin(
       {
+        open: false,
         host: 'localhost',
         port: 3000,
         files: ['src/views/**/*.ejs'],

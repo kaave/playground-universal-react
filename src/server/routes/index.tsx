@@ -3,7 +3,7 @@ import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouterContext } from 'react-router';
 import { StaticRouter } from 'react-router-dom';
-import { renderRoutes } from 'react-router-config';
+import { matchRoutes as getMatchRoutes, renderRoutes } from 'react-router-config';
 import { HelmetProvider, FilledContext } from 'react-helmet-async';
 
 import reactRoutes from '../../routes';
@@ -15,16 +15,21 @@ router.get('*', (req, res) => {
   let context: StaticRouterContext = {};
   const url = req.baseUrl;
 
+  const matchRoutes = getMatchRoutes(reactRoutes, url);
+  if (!matchRoutes.find(({ match }) => match.isExact)) {
+    res.render('404');
+    return;
+  }
+
   const helmetContext = {};
-  const app = (
+
+  const markup = renderToString(
     <HelmetProvider context={helmetContext}>
       <StaticRouter location={url} context={context}>
         {renderRoutes(reactRoutes)}
       </StaticRouter>
-    </HelmetProvider>
+    </HelmetProvider>,
   );
-
-  const markup = renderToString(app);
 
   res.render('index', { markup, title: (helmetContext as FilledContext).helmet.title });
 });

@@ -1,4 +1,5 @@
 import React from 'react';
+import { renderRoutes, RouteConfigComponentProps } from 'react-router-config';
 
 import Head from './Head';
 import Body from './Body';

@@ -5,8 +5,10 @@ import { StaticRouterContext } from 'react-router';
 import { StaticRouter } from 'react-router-dom';
 import { matchRoutes as getMatchRoutes, renderRoutes } from 'react-router-config';
 import { HelmetProvider, FilledContext } from 'react-helmet-async';
+import { Provider as ReactReduxProvider } from 'react-redux';
 
 import reactRoutes, { RouteConfigWithLoadData } from '../../routes';
+import { store } from '../../store';
 
 const router = express.Router();
 
@@ -29,16 +31,19 @@ router.get('*', async (req, res) => {
   try {
     await Promise.all(loadDatas);
 
+    const preloadedState = JSON.stringify(store.getState());
     const helmetContext = {};
     const markup = renderToString(
       <HelmetProvider context={helmetContext}>
-        <StaticRouter location={url} context={context}>
-          {renderRoutes(reactRoutes)}
-        </StaticRouter>
+        <ReactReduxProvider store={store}>
+          <StaticRouter location={url} context={context}>
+            {renderRoutes(reactRoutes)}
+          </StaticRouter>
+        </ReactReduxProvider>
       </HelmetProvider>,
     );
 
-    res.render('index', { markup, title: (helmetContext as FilledContext).helmet.title });
+    res.render('index', { markup, title: (helmetContext as FilledContext).helmet.title, preloadedState });
   } catch (error) {
     res.render('500');
     console.error(error);

@@ -6,7 +6,7 @@
     <%- title %>
   </head>
   <body>
-    <div id="mount-point"><%- markup %></div>
+    <div id="mount-point" data-state='<%- preloadedState %>'><%- markup %></div>
     <script src="/vendor.bundle.js" defer></script>
     <script src="/index.js" defer></script>
   </body>

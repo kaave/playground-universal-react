@@ -30,6 +30,8 @@ const app = express.default();
 if (isDevelopment) {
   console.log('dev mode');
   initializeDevServer(app);
+} else {
+  app.use(express.static('./build/client'));
 }
 
 app.set('view engine', 'ejs');

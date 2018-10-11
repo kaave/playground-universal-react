@@ -5,8 +5,8 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "start": "run-s start:*",
-    "start:server": "cross-env NODE_ENV=development webpack --watch --config tools/webpack/server/development",
+    "start": "cross-env NODE_ENV=development webpack --watch --config tools/webpack/server/development",
+    "start:prod": "cross-env NODE_ENV=production node build/server.js",
     "build": "run-s build:*",
     "build:webpack": "cross-env NODE_ENV=production webpack --progress --config tools/webpack/client/production.js",
     "build:server": "cross-env NODE_ENV=production webpack --config tools/webpack/server/production",

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import format from 'date-fns/format';
 import { renderRoutes, RouteConfigComponentProps } from 'react-router-config';
+import Helmet from 'react-helmet-async';
 
 export interface Props extends RouteConfigComponentProps {
   message?: string;
@@ -26,6 +27,9 @@ export default class App extends React.Component<Props, State> {
 
     return (
       <main id="main" className="Main" role="main">
+        <Helmet>
+          <title>base title</title>
+        </Helmet>
         now: {format(new Date())}, count: {counter}
         {this.props.route && renderRoutes(this.props.route.routes)}
       </main>

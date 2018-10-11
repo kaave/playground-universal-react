@@ -168,6 +168,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/ejs@^2.6.0":
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@types/ejs/-/ejs-2.6.0.tgz#56502bca6e2e1b4cf9351918ca76cdaa93fe3b6c"
+  integrity sha512-1ISPltnwvcNU1VTxV0Zusv/nUViHO/S+TUIjiHlvXdmU6e9B/WpCWN6Ewz+fCB7sugdIe5lhsJbbZ6/6+dA1Gg==
+
 "@types/events@*":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@types/events/-/events-1.2.0.tgz#81a6731ce4df43619e5c8c945383b3e62a89ea86"
@@ -258,6 +263,21 @@
   integrity sha512-WF/KAOia7pskV+J8f+UlNuFeCRkJuJAkyyeYPPtNe6suw0y7cWyUP/DPdPXsGUwQEkv2qlLVSrgVaoCm/PmO0Q==
   dependencies:
     "@types/node" "*"
+    "@types/react" "*"
+
+"@types/react-helmet-async@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@types/react-helmet-async/-/react-helmet-async-0.0.1.tgz#9445a3f3ccd2e8189be4451b7cebb8280b4b4316"
+  integrity sha512-Ojtr7QmAYX/ZR6/49Ptb5r7gwI32p4OAjrt5k3L/rwwOYuf13e5z+N50DLlu54nS7eHRSEJro/vQe1xEK0ExOg==
+  dependencies:
+    "@types/react" "*"
+    "@types/react-helmet" "*"
+
+"@types/react-helmet@*", "@types/react-helmet@^5.0.7":
+  version "5.0.7"
+  resolved "https://registry.yarnpkg.com/@types/react-helmet/-/react-helmet-5.0.7.tgz#1cae65b2c37fe54cf56f40cd388836d4619dbc51"
+  integrity sha512-FbDibfkcGsD/N+3k47bfLcr5uAzSi64LJ2OOILz/P5vtBwT5A92KZAU5H9/7OjhUN6au5k+BbNplhVfp6IXDcQ==
+  dependencies:
     "@types/react" "*"
 
 "@types/react-router-config@^1.0.9":
@@ -1744,6 +1764,11 @@ dedent@^0.7.0:
   resolved "https://registry.yarnpkg.com/dedent/-/dedent-0.7.0.tgz#2495ddbaf6eb874abb0e1be9df22d2e5a544326c"
   integrity sha1-JJXduvbrh0q7Dhvp3yLS5aVEMmw=
 
+deep-equal@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/deep-equal/-/deep-equal-1.0.1.tgz#f5d260292b660e084eff4cdbc9f08ad3247448b5"
+  integrity sha1-9dJgKStmDghO/0zbyfCK0yR0SLU=
+
 deep-extend@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/deep-extend/-/deep-extend-0.6.0.tgz#c4fa7c95404a17a9c3e8ca7e1537312b736330ac"
@@ -1951,6 +1976,11 @@ ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
+
+ejs@^2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/ejs/-/ejs-2.6.1.tgz#498ec0d495655abc6f23cd61868d926464071aa0"
+  integrity sha512-0xy4A/twfrRCnkhfk8ErDi5DqdAsAqeGxht4xkCUrsvhhbQNs7E+4jV0CN7+NKIY0aHE72+XvqtBIXzD31ZbXQ==
 
 electron-to-chromium@^1.2.7, electron-to-chromium@^1.3.73:
   version "1.3.75"
@@ -2202,6 +2232,11 @@ execall@^1.0.0:
   integrity sha1-c9CQTjlbPKsGWLCNCewlMH8pu3M=
   dependencies:
     clone-regexp "^1.0.0"
+
+exenv@^1.2.1:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/exenv/-/exenv-1.2.2.tgz#2ae78e85d9894158670b03d47bec1f03bd91bb9d"
+  integrity sha1-KueOhdmJQVhnCwPUe+wfA72Ru50=
 
 exit-hook@^1.0.0:
   version "1.1.1"
@@ -5320,7 +5355,7 @@ promise-inflight@^1.0.1:
   resolved "https://registry.yarnpkg.com/promise-inflight/-/promise-inflight-1.0.1.tgz#98472870bf228132fcbdd868129bad12c3c029e3"
   integrity sha1-mEcocL8igTL8vdhoEputEsPAKeM=
 
-prop-types@^15.6.1, prop-types@^15.6.2:
+prop-types@^15.5.4, prop-types@^15.6.1, prop-types@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   integrity sha512-3pboPvLiWD7dkI3qf3KbUe6hKFKa52w+AE0VCqECtf+QHAKgOL37tTaNCnuX1nAAQ4ZhyP+kYVKf8rLmJ/feDQ==
@@ -5501,6 +5536,31 @@ react-dom@^16.5.2:
     prop-types "^15.6.2"
     schedule "^0.5.0"
 
+react-fast-compare@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.2.tgz#0560ba7a61a1662d9cea8cd97a0d9db7591bab1c"
+  integrity sha512-EdPU5vXIzvNvQFNuej3oQ1PZ6YmDunTPZJ3V5EmwRqOhEmW0PNxzUdbYhXnZKZFtrrjGiu9718f6iQRdj0l2JA==
+
+react-helmet-async@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/react-helmet-async/-/react-helmet-async-0.2.0.tgz#d20d8725c1dcdcc95d54e281a1040af47c3abffa"
+  integrity sha512-xo8oN+SUt0YkgQscKPTqhZZIOn5ni18FMv/H3KuBDt5+yAXTGktPEf3HU2EyufbHAF0TQ8qI+JrA3ILnjVfqNA==
+  dependencies:
+    invariant "^2.2.4"
+    prop-types "^15.6.1"
+    react-fast-compare "^2.0.2"
+    shallowequal "^1.0.2"
+
+react-helmet@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/react-helmet/-/react-helmet-5.2.0.tgz#a81811df21313a6d55c5f058c4aeba5d6f3d97a7"
+  integrity sha1-qBgR3yExOm1VxfBYxK66XW89l6c=
+  dependencies:
+    deep-equal "^1.0.1"
+    object-assign "^4.1.1"
+    prop-types "^15.5.4"
+    react-side-effect "^1.1.0"
+
 react-router-config@^4.4.0-beta.1:
   version "4.4.0-beta.1"
   resolved "https://registry.yarnpkg.com/react-router-config/-/react-router-config-4.4.0-beta.1.tgz#be8e8deb508b64f3e257444e432a47e84fe2531e"
@@ -5530,6 +5590,14 @@ react-router@^4.3.1:
     path-to-regexp "^1.7.0"
     prop-types "^15.6.1"
     warning "^4.0.1"
+
+react-side-effect@^1.1.0:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/react-side-effect/-/react-side-effect-1.1.5.tgz#f26059e50ed9c626d91d661b9f3c8bb38cd0ff2d"
+  integrity sha512-Z2ZJE4p/jIfvUpiUMRydEVpQRf2f8GMHczT6qLcARmX7QRb28JDBTpnM2g/i5y/p7ZDEXYGHWg0RbhikE+hJRw==
+  dependencies:
+    exenv "^1.2.1"
+    shallowequal "^1.0.1"
 
 react@^16.5.2:
   version "16.5.2"
@@ -6066,6 +6134,11 @@ sha.js@^2.4.0, sha.js@^2.4.8:
   dependencies:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
+
+shallowequal@^1.0.1, shallowequal@^1.0.2:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/shallowequal/-/shallowequal-1.1.0.tgz#188d521de95b9087404fd4dcb68b13df0ae4e7f8"
+  integrity sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==
 
 shebang-command@^1.2.0:
   version "1.2.0"

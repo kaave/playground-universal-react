@@ -60,7 +60,6 @@
   "dependencies": {
     "date-fns": "^1.29.0",
     "dotenv": "^6.0.0",
-    "ejs": "^2.6.1",
     "express": "^4.16.3",
     "lodash-es": "^4.17.11",
     "react": "^16.5.2",
@@ -76,7 +75,6 @@
   "devDependencies": {
     "@types/dotenv": "^4.0.3",
     "@types/dotenv-webpack": "^1.5.0",
-    "@types/ejs": "^2.6.0",
     "@types/express": "^4.16.0",
     "@types/fs-extra": "^5.0.4",
     "@types/lodash-es": "^4.17.1",

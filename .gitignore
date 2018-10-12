@@ -188,9 +188,7 @@ tags
 /.idea
 # VScode settings
 /.vscode
-# build files (development)
+# build files
 /.tmp
-# build files (production)
 /build
-# build files (difference files)
-/build_diff
+/assets/global.css

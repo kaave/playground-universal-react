@@ -1,0 +1,5 @@
+@import "sanitize.css";
+
+.-hidden-sp {
+    display: none !important;
+}

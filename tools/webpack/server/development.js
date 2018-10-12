@@ -11,6 +11,7 @@ const appendRules = [
     test: /\.tsx?$/,
     exclude: /node_modules/,
     use: [
+      'cache-loader',
       {
         loader: 'ts-loader',
         options: {

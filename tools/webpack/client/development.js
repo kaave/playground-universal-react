@@ -11,6 +11,7 @@ const appendRules = [
     test: /\.tsx?$/,
     exclude: /node_modules/,
     use: [
+      'cache-loader',
       {
         loader: 'ts-loader',
         options: {
@@ -49,7 +50,7 @@ module.exports = {
         open: false,
         host: 'localhost',
         port: 3000,
-        files: ['src/views/**/*.ejs'],
+        files: ['assets/**/*', 'src/views/**/*.ejs'],
         proxy: 'http://localhost:8880',
       },
       {

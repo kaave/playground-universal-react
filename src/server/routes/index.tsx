@@ -6,9 +6,10 @@ import { StaticRouter } from 'react-router-dom';
 import { matchRoutes as getMatchRoutes, renderRoutes } from 'react-router-config';
 import { HelmetProvider, FilledContext } from 'react-helmet-async';
 import { Provider as ReactReduxProvider } from 'react-redux';
+import createHistory from 'history/createMemoryHistory';
 
 import reactRoutes, { RouteConfigWithLoadData } from '../../routes';
-import { store } from '../../store';
+import { getStore } from '../../store';
 
 const router = express.Router();
 
@@ -31,6 +32,7 @@ router.get('*', async (req, res) => {
   try {
     await Promise.all(loadDatas);
 
+    const store = getStore({ initialState: {}, history: createHistory() });
     const preloadedState = JSON.stringify(store.getState());
     const helmetContext = {};
     const markup = renderToString(

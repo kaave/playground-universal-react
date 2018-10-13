@@ -11,6 +11,7 @@
   </head>
   <body>
     <div id="mount-point" data-state='<%- preloadedState %>'><%- markup %></div>
+    <script src="https://cdn.polyfill.io/v2/polyfill.js?features=default-3.3,Promise"></script>
     <% if (isProduction) { %>
     <script>
       if ('serviceWorker' in navigator) {

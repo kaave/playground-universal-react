@@ -8,6 +8,7 @@
     "start": "run-p start:*",
     "start:css": "cross-env NODE_ENV=development postcss './src/styles/*.css' --dir './assets' -w",
     "start:client": "cross-env NODE_ENV=development webpack --watch --config tools/webpack/server/development",
+    "prebuild": "npm run clean:build",
     "build": "run-s build:*",
     "build:css": "cross-env NODE_ENV=production postcss './src/styles/*.css' --dir './assets' --no-map",
     "build:client": "cross-env NODE_ENV=production webpack --progress --config tools/webpack/client/production.js",
@@ -26,8 +27,7 @@
     "fix:style": "prettier --write 'src/**/*.css'",
     "fix:script": "tslint -t stylish --fix 'src/**/*.{ts,tsx}'",
     "fix:json": "prettier --write 'src/**/*.json'",
-    "typecheck": "tsc --noEmit -p tools/tsconfig/server.production.json",
-    "ts-node": "ts-node"
+    "typecheck": "tsc --noEmit -p tools/tsconfig/server.production.json"
   },
   "browserslist": [
     "> 0.5% in jp",

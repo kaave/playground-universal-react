@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators, Dispatch } from 'redux';
+import { throttle } from 'lodash';
 
 import format from 'date-fns/format';
 import { renderRoutes, RouteConfigComponentProps } from 'react-router-config';
@@ -39,8 +39,12 @@ export default connectToStore(
 
     startCountup() {
       setInterval(() => this.setState({ ...this.state, counter: this.state.counter + 1 }), 1000);
-      setInterval(() => this.props.increment(), 666);
     }
+
+    increment = () => this.props.increment();
+    decrement = () => this.props.decrement();
+    asyncIncrement = throttle(() => this.props.asyncIncrement(), 1000);
+    asyncDecrement = throttle(() => this.props.asyncDecrement(), 1000);
 
     render() {
       const { counter } = this.state;
@@ -50,8 +54,12 @@ export default connectToStore(
           <Helmet>
             <title>base title</title>
           </Helmet>
-          now: {format(new Date())}, count: {counter}, storeCount: {this.props.count}
+          now: {format(new Date())}, auto counter: {counter}, storeCounter: {this.props.count}
           {this.props.route && renderRoutes(this.props.route.routes)}
+          <button onClick={this.increment}>increment</button>
+          <button onClick={this.decrement}>decrement</button>
+          <button onClick={this.asyncIncrement}>async increment</button>
+          <button onClick={this.asyncDecrement}>async decrement</button>
         </main>
       );
     }

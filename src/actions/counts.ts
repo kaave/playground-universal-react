@@ -1,14 +1,17 @@
 import actionCreatorFactory from 'typescript-fsa';
-import { ActionCreator } from 'redux';
 
 const actionCreator = actionCreatorFactory();
 
 export const types = {
   increment: 'INCREMENT',
   decrement: 'DECREMENT',
+  asyncIncrement: 'ASYNC_INCREMENT',
+  asyncDecrement: 'ASYNC_DECREMENT',
 };
 
 export const increment = actionCreator<void>(types.increment);
 export const decrement = actionCreator<void>(types.decrement);
+export const asyncIncrement = actionCreator<void>(types.asyncIncrement);
+export const asyncDecrement = actionCreator<void>(types.asyncDecrement);
 
-export const actions = { increment, decrement };
+export const actions = { increment, decrement, asyncIncrement, asyncDecrement };

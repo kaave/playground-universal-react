@@ -22,6 +22,21 @@ const appendRules = [
       },
     ],
   },
+  {
+    test: /\.css$/,
+    use: [
+      'style-loader',
+      {
+        loader: 'css-loader',
+        options: {
+          importLoaders: 1,
+          localIdentName: '[name]__[local]___[hash:base64:5]',
+          modules: true,
+        },
+      },
+      'postcss-loader',
+    ],
+  },
 ];
 
 const publicPath = '/';

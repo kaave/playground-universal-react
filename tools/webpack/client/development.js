@@ -20,6 +20,27 @@ const appendRules = [
       },
     ],
   },
+  {
+    test: /\.css$/,
+    use: [
+      'style-loader',
+      {
+        loader: 'css-loader',
+        options: {
+          importLoaders: 1,
+          localIdentName: '[name]__[local]___[hash:base64:5]',
+          modules: true,
+          sourceMap: true,
+        },
+      },
+      {
+        loader: 'postcss-loader',
+        options: {
+          sourceMap: true,
+        },
+      },
+    ],
+  },
   { test: /\.js$/, use: 'source-map-loader', enforce: 'pre' },
 ];
 const publicPath = '/';

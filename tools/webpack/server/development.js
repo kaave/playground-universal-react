@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const NodeExternals = require('webpack-node-externals');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const NodemonPlugin = require('nodemon-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const { resolve, rules, plugins } = require('../base');
 
@@ -58,7 +59,9 @@ module.exports = {
     path: path.join(process.cwd(), '.tmp'),
     filename: 'server.js',
   },
-  resolve,
+  resolve: { ...resolve, plugins: [
+    new TsconfigPathsPlugin(),
+  ]},
   plugins: [
     ...plugins,
     new webpack.NamedModulesPlugin(),

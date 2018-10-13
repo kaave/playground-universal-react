@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const conf = require('../../config');
 const { resolve, rules, plugins, optimization } = require('../base');
@@ -64,7 +65,9 @@ module.exports = {
     filename: '[name].js',
     publicPath,
   },
-  resolve,
+  resolve: { ...resolve, plugins: [
+    new TsconfigPathsPlugin(),
+  ]},
   optimization,
   plugins: [
     ...plugins,

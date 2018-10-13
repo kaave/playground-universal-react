@@ -23,7 +23,12 @@ const appendRules = [
   {
     test: /\.css$/,
     use: [
-      'isomorphic-style-loader',
+      {
+        loader: 'isomorphic-style-loader',
+        options: {
+          sourceMap: true,
+        },
+      },
       {
         loader: 'css-loader',
         options: {

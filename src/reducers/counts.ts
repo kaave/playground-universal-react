@@ -1,5 +1,4 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
-import { combineReducers } from 'redux';
 
 import * as Counts from '../actions/counts';
 

@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <%- title %>
     <link rel="stylesheet" href="/global.css">
+    <% if (isProduction) { %>
+        <link rel="stylesheet" href="/index.css">
+    <% } %>
   </head>
   <body>
     <div id="mount-point" data-state='<%- preloadedState %>'><%- markup %></div>

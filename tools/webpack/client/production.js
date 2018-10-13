@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const LicenseInfoWebpackPlugin = require('license-info-webpack-plugin').default;
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
@@ -25,7 +26,7 @@ const appendRules = [
   {
     test: /\.css$/,
     use: [
-      'style-loader',
+      MiniCssExtractPlugin.loader,
       {
         loader: 'css-loader',
         options: {
@@ -56,6 +57,10 @@ module.exports = {
   ]},
   plugins: [
     ...plugins,
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css'
+    }),
     new LicenseInfoWebpackPlugin({
       glob: '{LICENSE,license,License}*',
     }),

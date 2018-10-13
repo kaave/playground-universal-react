@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const NodeExternals = require('webpack-node-externals');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
@@ -24,7 +25,8 @@ const appendRules = [
   {
     test: /\.css$/,
     use: [
-      'isomorphic-style-loader',
+      // 'isomorphic-style-loader',
+      MiniCssExtractPlugin.loader,
       {
         loader: 'css-loader',
         options: {
@@ -55,7 +57,10 @@ module.exports = {
   externals: NodeExternals(),
   plugins: [
     ...plugins,
-    new webpack.NamedModulesPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'nouse.css',
+      chunkFilename: '[id].css'
+    }),
     new ForkTsCheckerWebpackPlugin({ tsconfig: tsconfigPath }),
   ],
   module: {

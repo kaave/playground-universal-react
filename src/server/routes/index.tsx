@@ -45,7 +45,12 @@ router.get('*', async (req, res) => {
       </HelmetProvider>,
     );
 
-    res.render('index', { markup, title: (helmetContext as FilledContext).helmet.title, preloadedState });
+    res.render('index', {
+      markup,
+      title: (helmetContext as FilledContext).helmet.title,
+      preloadedState,
+      isProduction: process.env.NODE_ENV === 'production',
+    });
   } catch (error) {
     res.render('500');
     console.error(error);

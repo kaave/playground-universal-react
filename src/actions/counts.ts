@@ -11,4 +11,4 @@ export const types = {
 export const increment = actionCreator<void>(types.increment);
 export const decrement = actionCreator<void>(types.decrement);
 
-export const actions = [increment, decrement] as Array<ActionCreator<{}>>;
+export const actions = { increment, decrement };

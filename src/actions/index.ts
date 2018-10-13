@@ -1,3 +1,3 @@
 import { actions } from './counts';
 
-export default [...actions];
+export default { ...actions };

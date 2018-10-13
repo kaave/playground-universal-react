@@ -290,13 +290,13 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-redux@^6.0.9":
-  version "6.0.9"
-  resolved "https://registry.yarnpkg.com/@types/react-redux/-/react-redux-6.0.9.tgz#96aa7f5b0716bcc3bfb36ceaa1223118d509f79a"
-  integrity sha512-LatgnnZ7bG63SmzEqGMjAIP1bN36iaXpb4G7UW3SqpHyo+OQ97MnMXm9BoNi720r61+PvseyIUJN4el4GVhAAg==
+"@types/react-redux@5":
+  version "5.0.21"
+  resolved "https://registry.yarnpkg.com/@types/react-redux/-/react-redux-5.0.21.tgz#98a3a371dfc22c894889f660d7515717639d20f4"
+  integrity sha512-ewkOW4GjnyXq5L++T31utI8yRmwj8iCIahZohYi1Ef7Xkrw0V/q92ao7x20rm38FKgImDaCCsaRGWfCJmF/Ukg==
   dependencies:
     "@types/react" "*"
-    redux "^4.0.0"
+    redux "^3.6.0"
 
 "@types/react-router-config@^1.0.9":
   version "1.0.9"
@@ -6277,6 +6277,13 @@ react-helmet-async@^0.2.0:
     react-fast-compare "^2.0.2"
     shallowequal "^1.0.2"
 
+react-redux-typescript@^3.0.0-rc.3:
+  version "3.0.0-rc.3"
+  resolved "https://registry.yarnpkg.com/react-redux-typescript/-/react-redux-typescript-3.0.0-rc.3.tgz#8f562c15fcd13afde476f28b6484e4f0359f8b79"
+  integrity sha512-p6OjEYWin8nwyoODuYqVXKLEQ1b4jMStDu0sBKPwLr9TFIGL6mulU+fI3KZTbqLczkJSLh0QTR9vS6kw8l8XmA==
+  dependencies:
+    typesafe-actions "1.0.0"
+
 react-redux@^5.0.7:
   version "5.0.7"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.0.7.tgz#0dc1076d9afb4670f993ffaef44b8f8c1155a4c8"
@@ -7758,6 +7765,11 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
+
+typesafe-actions@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/typesafe-actions/-/typesafe-actions-1.0.0.tgz#9bd4b9e250399e818fd3dbf0235fa21972cda509"
+  integrity sha512-L7wXh1nm07KjmE3nej0NJNHx5/Bc6Q7fIazfnqHkP97WLieEDBxXDCeMT98KSrtwbCneO14xQXokEPuW9sNG5w==
 
 typescript-fsa-reducers@^1.0.0:
   version "1.0.0"

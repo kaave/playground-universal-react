@@ -12,6 +12,6 @@ const initialState: State = {
 
 export const reducers = {
   count: reducerWithInitialState(initialState.count)
-    .case(Counts.increment, () => initialState.count + 1)
-    .case(Counts.decrement, () => initialState.count - 1),
+    .case(Counts.increment, state => state + 1)
+    .case(Counts.decrement, state => state - 1),
 };

@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const LicenseInfoWebpackPlugin = require('license-info-webpack-plugin').default;
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const { GenerateSW } = require('workbox-webpack-plugin');
 
 const { resolve, rules, plugins, optimization } = require('../base');
 
@@ -66,7 +67,8 @@ module.exports = {
     }),
     new ForkTsCheckerWebpackPlugin({
       tsconfig: tsconfigPath,
-    })
+    }),
+    new GenerateSW(),
   ],
   module: {
     rules: [...rules, ...appendRules],

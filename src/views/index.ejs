@@ -11,6 +11,13 @@
   </head>
   <body>
     <div id="mount-point" data-state='<%- preloadedState %>'><%- markup %></div>
+    <% if (isProduction) { %>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js'));
+      }
+    </script>
+    <% } %>
     <script src="/vendor.bundle.js" defer></script>
     <script src="/index.js" defer></script>
   </body>

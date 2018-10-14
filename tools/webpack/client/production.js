@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const LicenseInfoWebpackPlugin = require('license-info-webpack-plugin').default;
+const { LicenseWebpackPlugin } = require('license-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const { GenerateSW } = require('workbox-webpack-plugin');
@@ -62,8 +62,8 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css'
     }),
-    new LicenseInfoWebpackPlugin({
-      glob: '{LICENSE,license,License}*',
+    new LicenseWebpackPlugin({
+      outputFilename: 'license.txt',
     }),
     new ForkTsCheckerWebpackPlugin({
       tsconfig: tsconfigPath,

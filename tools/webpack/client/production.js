@@ -1,8 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { LicenseWebpackPlugin } = require('license-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const { GenerateSW } = require('workbox-webpack-plugin');
@@ -62,9 +61,6 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css'
     }),
-    new LicenseWebpackPlugin({
-      outputFilename: 'license.txt',
-    }),
     new ForkTsCheckerWebpackPlugin({
       tsconfig: tsconfigPath,
     }),
@@ -76,11 +72,17 @@ module.exports = {
   optimization: {
     ...optimization,
     minimizer: [
-      new UglifyJSPlugin({
-        uglifyOptions: {
-          output: { comments: /^\**!|@preserve|@license|@cc_on/ },
+      new TerserPlugin({
+        parallel: true,
+        extractComments: {
+          filename: 'licenses.txt'
         },
-      }),
+        terserOptions: {
+          output: {
+            comments: /^\**!|@preserve|@license|@cc_on/
+          }
+        }
+      })
     ],
   },
 };

@@ -8,11 +8,14 @@ import router from './routes/';
 
 Dotenv.load();
 
-function initializeDevServer(expressApp: Express) {
-  const webpack = require('webpack');
-  const webpackHotMiddleware = require('webpack-hot-middleware');
-  const webpackDevMiddleware = require('webpack-dev-middleware');
-  const webpackClientConfig = require('../../tools/webpack/client/development');
+const isDevelopment = process.env.NODE_ENV === 'development' || false;
+const port = process.env.PORT || 3000;
+
+async function initializeDevServer(expressApp: Express) {
+  const { default: webpack } = await import('webpack');
+  const { default: webpackHotMiddleware } = await import('webpack-hot-middleware');
+  const { default: webpackDevMiddleware } = await import('webpack-dev-middleware');
+  const { default: webpackClientConfig } = await import('../../tools/webpack/client/development');
 
   const compiler = webpack(webpackClientConfig as any);
   expressApp.use(webpackHotMiddleware(compiler));
@@ -24,23 +27,25 @@ function initializeDevServer(expressApp: Express) {
   );
 }
 
-const isDevelopment = process.env.NODE_ENV === 'development' || false;
-const port = process.env.PORT || 3000;
-const app = express.default();
+async function main() {
+  const app = express.default();
 
-if (isDevelopment) {
-  console.log('dev mode');
-  initializeDevServer(app);
-} else {
-  app.use(express.static('./build/client'));
+  if (isDevelopment) {
+    console.log('dev mode');
+    await initializeDevServer(app);
+  } else {
+    app.use(express.static('./build/client'));
+  }
+
+  app.set('view engine', 'ejs');
+  app.set('views', 'src/views');
+
+  app.use(express.static('./assets'));
+  setApiRoutes(app);
+
+  app.use('*', router);
+
+  app.listen(port);
 }
 
-app.set('view engine', 'ejs');
-app.set('views', 'src/views');
-
-app.use(express.static('./assets'));
-setApiRoutes(app);
-
-app.use('*', router);
-
-app.listen(port, () => console.log(`start: port[${port}]`));
+main().then(() => console.log(`start: port[${port}]`));

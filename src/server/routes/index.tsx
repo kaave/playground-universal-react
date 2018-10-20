@@ -9,7 +9,7 @@ import { Provider as ReactReduxProvider } from 'react-redux';
 import createHistory from 'history/createMemoryHistory';
 
 import reactRoutes, { RouteConfigWithLoadData } from '../../routes';
-import { getStore } from '../../store';
+import { getStore } from '../../reduxes/store';
 
 const router = express.Router();
 

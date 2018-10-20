@@ -7,8 +7,8 @@ import { renderRoutes, RouteConfigComponentProps } from 'react-router-config';
 import Helmet from 'react-helmet-async';
 import { returntypeof } from 'react-redux-typescript';
 
-import { State } from '../reducers';
-import actions from '../actions';
+import { State } from '../reduxes/reducers';
+import actions from '../reduxes/actions';
 
 function mapStateToProps(state: State) {
   return { ...state };

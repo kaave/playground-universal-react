@@ -10,7 +10,7 @@ import createHistory from 'history/createBrowserHistory';
 
 import { author } from '../consts';
 import routes from '../routes';
-import { getStore } from '../store';
+import { getStore } from '../reduxes/store';
 
 export const history = createHistory();
 

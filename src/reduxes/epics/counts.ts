@@ -4,7 +4,7 @@ import { timer } from 'rxjs';
 import { mergeMap, map } from 'rxjs/operators';
 
 import { ofAction } from '~/utils/ofAction';
-import { asyncIncrement, asyncDecrement, increment, decrement } from '~/actions/counts';
+import { asyncIncrement, asyncDecrement, increment, decrement } from '~/reduxes/actions/counts';
 
 const asyncIncrementEpic: Epic<Action, any> = (actions$, _store) =>
   actions$.pipe(

@@ -3,6 +3,7 @@ import * as Dotenv from 'dotenv';
 import * as express from 'express';
 import { Express } from 'express';
 
+import { setApiRoutes } from './api';
 import router from './routes/';
 
 Dotenv.load();
@@ -38,6 +39,7 @@ app.set('view engine', 'ejs');
 app.set('views', 'src/views');
 
 app.use(express.static('./assets'));
+setApiRoutes(app);
 
 app.use('*', router);
 

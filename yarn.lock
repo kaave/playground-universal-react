@@ -6606,6 +6606,11 @@ redux-observable@^1.0.0:
   resolved "https://registry.yarnpkg.com/redux-observable/-/redux-observable-1.0.0.tgz#780ff2455493eedcef806616fe286b454fd15d91"
   integrity sha512-6bXnpqWTBeLaLQjXHyN1giXq4nLxCmv+SUkdmiwBgvmVxvDbdmydvL1Z7DGo0WItyzI/kqXQKiucUuTxnrPRkA==
 
+"redux-saga@>=0.14.0 <0.17.0 || 1.0.0-beta.0 || 1.0.0-beta.1 || 1.0.0-beta.2", redux-saga@^0.16.2:
+  version "0.16.2"
+  resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-0.16.2.tgz#993662e86bc945d8509ac2b8daba3a8c615cc971"
+  integrity sha512-iIjKnRThI5sKPEASpUvySemjzwqwI13e3qP7oLub+FycCRDysLSAOwt958niZW6LhxfmS6Qm1BzbU70w/Koc4w==
+
 redux-seamless-immutable@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/redux-seamless-immutable/-/redux-seamless-immutable-0.4.0.tgz#b50f8680ecc5ef04021551267f78fa1ffd3cf985"
@@ -7961,7 +7966,16 @@ typescript-fsa-reducers@^1.0.0:
   resolved "https://registry.yarnpkg.com/typescript-fsa-reducers/-/typescript-fsa-reducers-1.0.0.tgz#1503fcdec38f70377aab79a15ea737cdfeb803c1"
   integrity sha512-tD37fxOKQVndBi0PrN54AK387saJCyBQr+gZMi9eUQ9Py/WPyrFGuqO12dsKIt94bzyhB2BLcnMJoy/TrGkUKg==
 
-typescript-fsa@^3.0.0-beta-2:
+typescript-fsa-redux-saga@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/typescript-fsa-redux-saga/-/typescript-fsa-redux-saga-1.1.1.tgz#bee346cbd3bffbab4610a44f900ef63aca466fca"
+  integrity sha512-H8LqUPLWJEw2SBozNzPe0G19ajAoZQ2fTUE/oIQ3rvoXyUVU8x/Hnqx53Q0xTq2OMvakbHj9O1omtPeNr7lq1Q==
+  dependencies:
+    redux-saga ">=0.14.0 <0.17.0 || 1.0.0-beta.0 || 1.0.0-beta.1 || 1.0.0-beta.2"
+    tslib "^1.7.1"
+    typescript-fsa "^2.0.0 || ^3.0.0-beta-2"
+
+"typescript-fsa@^2.0.0 || ^3.0.0-beta-2", typescript-fsa@^3.0.0-beta-2:
   version "3.0.0-beta-2"
   resolved "https://registry.yarnpkg.com/typescript-fsa/-/typescript-fsa-3.0.0-beta-2.tgz#1cc1d0c014c025fd51cba097776033ac4b6b753c"
   integrity sha512-qXkHih2XAtpxqd3AEVgFtCDwvBlAMl2miVy1TmS+wXgiRlVw7orf2qIh3C8faANhD34n75Ui8x5ydQ40uzuskA==

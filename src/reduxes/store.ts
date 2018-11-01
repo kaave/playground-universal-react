@@ -8,16 +8,16 @@ import { History } from 'history';
 import { applyMiddleware, compose, createStore, Middleware } from 'redux';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import loggerMiddleware from 'redux-logger';
-import { createEpicMiddleware } from 'redux-observable';
+import createSagaMiddleware from 'redux-saga';
 
 import rootReducer from './reducers';
-import rootEpics from './epics';
+import { rootSaga } from './sagas/';
 
 const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
 export function getStore({ initialState, history }: { initialState: object; history: History<any> }) {
-  const epicMiddleware = createEpicMiddleware();
-  const middlewares: Middleware[] = [epicMiddleware, routerMiddleware(history), loggerMiddleware];
+  const sagaMiddleWare = createSagaMiddleware();
+  const middlewares: Middleware[] = [sagaMiddleWare, routerMiddleware(history), loggerMiddleware];
 
   const store = createStore(
     connectRouter(history)(rootReducer),
@@ -25,7 +25,7 @@ export function getStore({ initialState, history }: { initialState: object; hist
     composeEnhancers(applyMiddleware(...middlewares)),
   );
 
-  epicMiddleware.run(rootEpics);
+  sagaMiddleWare.run(rootSaga);
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {

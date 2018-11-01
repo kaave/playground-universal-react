@@ -1,6 +1,6 @@
 import * as React from 'react';
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { throttle } from 'lodash';
 
 import format from 'date-fns/format';
 import { renderRoutes, RouteConfigComponentProps } from 'react-router-config';
@@ -8,13 +8,11 @@ import Helmet from 'react-helmet-async';
 import { returntypeof } from 'react-redux-typescript';
 
 import { State } from '../reduxes/reducers';
-import actions from '../reduxes/actions';
+import { mapDispatchToProps } from '../reduxes/actions';
 
 function mapStateToProps(state: State) {
   return { ...state };
 }
-
-const mapDispatchToProps = { ...actions };
 
 const connectToStore = connect(
   mapStateToProps,
@@ -22,8 +20,9 @@ const connectToStore = connect(
 );
 
 const stateProps = returntypeof(mapStateToProps);
+const dispatchProps = returntypeof(mapDispatchToProps);
 
-type AppProps = typeof stateProps & typeof mapDispatchToProps & RouteConfigComponentProps;
+type AppProps = typeof stateProps & typeof dispatchProps & RouteConfigComponentProps;
 
 export interface AppState {
   counter: number;
@@ -43,8 +42,8 @@ export default connectToStore(
 
     increment = () => this.props.increment();
     decrement = () => this.props.decrement();
-    asyncIncrement = throttle(() => this.props.asyncIncrement(), 1000);
-    asyncDecrement = throttle(() => this.props.asyncDecrement(), 1000);
+    asyncIncrement = () => this.props.asyncIncrement();
+    asyncDecrement = () => this.props.asyncDecrement();
 
     render() {
       const { counter } = this.state;

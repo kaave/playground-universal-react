@@ -1,3 +1,12 @@
-import { actions } from './counts';
+import { Dispatch } from 'redux';
 
-export default { ...actions };
+import { types as Counts } from './counts';
+
+export function mapDispatchToProps(dispatch: Dispatch) {
+  return {
+    increment: () => dispatch({ type: Counts.increment }),
+    decrement: () => dispatch({ type: Counts.decrement }),
+    asyncIncrement: () => dispatch({ type: Counts.asyncIncrement }),
+    asyncDecrement: () => dispatch({ type: Counts.asyncDecrement }),
+  };
+}

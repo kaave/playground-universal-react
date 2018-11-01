@@ -11,7 +11,7 @@ export const types = {
 
 export const increment = actionCreator<void>(types.increment);
 export const decrement = actionCreator<void>(types.decrement);
-export const asyncIncrement = actionCreator<void>(types.asyncIncrement);
-export const asyncDecrement = actionCreator<void>(types.asyncDecrement);
+export const asyncIncrement = actionCreator.async<void, void>(types.asyncIncrement);
+export const asyncDecrement = actionCreator.async<void, void>(types.asyncDecrement);
 
 export const actions = { increment, decrement, asyncIncrement, asyncDecrement };

@@ -1,7 +1,6 @@
 import express from 'express';
 import * as React from 'react';
-import { renderToString } from 'react-dom/server';
-import { StaticRouterContext } from 'react-router';
+import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { matchRoutes as getMatchRoutes, renderRoutes } from 'react-router-config';
 import { HelmetProvider, FilledContext } from 'react-helmet-async';
@@ -10,12 +9,12 @@ import createHistory from 'history/createMemoryHistory';
 
 import reactRoutes, { RouteConfigWithLoadData } from '../../routes';
 import { getStore } from '../../reduxes/store';
+import { rootSaga } from '../../reduxes/sagas';
 
 const router = express.Router();
 
 router.get('*', async (req, res) => {
   // tslint:disable-next-line prefer-const
-  let context: StaticRouterContext = {};
   const url = req.baseUrl;
 
   const matchRoutes = getMatchRoutes(reactRoutes, url);
@@ -24,33 +23,39 @@ router.get('*', async (req, res) => {
     return;
   }
 
-  const loadDatas = matchRoutes
-    .map(({ route }) => (route as RouteConfigWithLoadData).loadData)
-    .filter(loadData => loadData != null)
-    .map(loadData => loadData!());
+  const dispatches = matchRoutes
+    .map(({ route }) => (route as RouteConfigWithLoadData).runDispatch)
+    .filter(dispatch => dispatch != null)
+    .map(dispatch => dispatch!);
 
   try {
-    await Promise.all(loadDatas);
-
-    const store = getStore({ initialState: {}, history: createHistory() });
-    const preloadedState = JSON.stringify(store.getState());
+    const store = getStore({ initialState: {}, history: createHistory(), isServer: true });
     const helmetContext = {};
-    const markup = renderToString(
+    const App = (
       <HelmetProvider context={helmetContext}>
         <ReactReduxProvider store={store}>
-          <StaticRouter location={url} context={context}>
+          <StaticRouter location={url} context={{}}>
             {renderRoutes(reactRoutes)}
           </StaticRouter>
         </ReactReduxProvider>
-      </HelmetProvider>,
+      </HelmetProvider>
     );
 
-    res.render('index', {
-      markup,
-      title: (helmetContext as FilledContext).helmet.title,
-      preloadedState,
-      isProduction: process.env.NODE_ENV === 'production',
+    store.runSaga(rootSaga).done.then(() => {
+      const markup = renderToString(App);
+      const preloadedState = JSON.stringify(store.getState());
+
+      res.render('index', {
+        markup,
+        title: (helmetContext as FilledContext).helmet.title,
+        preloadedState,
+        isProduction: process.env.NODE_ENV === 'production',
+      });
     });
+
+    renderToStaticMarkup(App); // start redux-saga
+    dispatches.forEach(func => func(store.dispatch));
+    store.close(); // stop redux-saga
   } catch (error) {
     res.render('500');
     console.error(error);

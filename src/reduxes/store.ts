@@ -5,27 +5,42 @@ declare global {
 }
 
 import { History } from 'history';
-import { applyMiddleware, compose, createStore, Middleware } from 'redux';
+import { applyMiddleware, compose, createStore, Middleware, Store } from 'redux';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import loggerMiddleware from 'redux-logger';
-import createSagaMiddleware from 'redux-saga';
+import createSagaMiddleware, { SagaMiddleware, END } from 'redux-saga';
 
 import rootReducer from './reducers';
 import { rootSaga } from './sagas/';
 
 const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
-export function getStore({ initialState, history }: { initialState: object; history: History<any> }) {
-  const sagaMiddleWare = createSagaMiddleware();
-  const middlewares: Middleware[] = [sagaMiddleWare, routerMiddleware(history), loggerMiddleware];
+export function getStore({
+  initialState,
+  history,
+  isServer,
+}: {
+  initialState: object;
+  history: History<any>;
+  isServer?: boolean;
+}) {
+  const sagaMiddleware = createSagaMiddleware();
+  const middlewares: Middleware[] = [sagaMiddleware, routerMiddleware(history)];
+  if (!isServer) {
+    middlewares.push(loggerMiddleware);
+  }
 
-  const store = createStore(
-    connectRouter(history)(rootReducer),
-    initialState,
-    composeEnhancers(applyMiddleware(...middlewares)),
-  );
+  const store: Store & {
+    runSaga: SagaMiddleware<typeof rootSaga>['run'];
+    close: () => void;
+  } = createStore(connectRouter(history)(rootReducer), initialState, composeEnhancers(applyMiddleware(...middlewares)));
 
-  sagaMiddleWare.run(rootSaga);
+  if (isServer) {
+    store.runSaga = sagaMiddleware.run;
+    store.close = () => store.dispatch(END);
+  } else {
+    sagaMiddleware.run(rootSaga);
+  }
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {

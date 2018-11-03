@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import format from 'date-fns/format';

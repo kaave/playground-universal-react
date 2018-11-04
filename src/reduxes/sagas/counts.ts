@@ -4,8 +4,10 @@ import { bindAsyncAction } from 'typescript-fsa-redux-saga';
 
 import { asyncDecrement, asyncIncrement, types } from '../actions/counts';
 
+const wait = (msec: number) => () => new Promise(resolve => setTimeout(resolve, msec));
+
 const asyncIncrementWorker = bindAsyncAction(asyncIncrement)(function*(): SagaIterator {
-  yield call(delay, 1000);
+  yield call(wait(1000));
   yield put({ type: types.increment });
 });
 

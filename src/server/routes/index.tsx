@@ -18,7 +18,8 @@ router.get('*', async (req, res) => {
   const url = req.baseUrl;
 
   const matchRoutes = getMatchRoutes(reactRoutes, url);
-  if (!matchRoutes.find(({ match }) => match.isExact)) {
+  const exactRoute = matchRoutes.find(({ match }) => match.isExact);
+  if (!exactRoute) {
     res.render('404');
     return;
   }
@@ -54,7 +55,7 @@ router.get('*', async (req, res) => {
     });
 
     renderToStaticMarkup(App); // start redux-saga
-    dispatches.forEach(func => func(store.dispatch));
+    dispatches.forEach(func => func(store.dispatch, exactRoute.match.params));
     store.close(); // stop redux-saga
   } catch (error) {
     res.render('500');

@@ -7,7 +7,7 @@ import DemoPages, { loadData as DemoPageLoadData } from './components/pages/demo
 import { types as Counts } from './reduxes/actions/counts';
 
 export interface RouteConfigWithLoadData extends RouteConfig {
-  runDispatch?: (dispatch: Dispatch) => void;
+  runDispatch?: (dispatch: Dispatch, params?: any) => void;
   routes?: RouteConfigWithLoadData[];
 }
 
@@ -20,9 +20,13 @@ export default [
         component: IndexPages,
         path: '/increment',
         exact: true,
-        runDispatch: dispatch => {
-          dispatch({ type: Counts.asyncIncrement });
-        },
+        runDispatch: dispatch => dispatch({ type: Counts.asyncIncrement }),
+      },
+      {
+        component: IndexPages,
+        path: '/add/:count',
+        exact: true,
+        runDispatch: (dispatch, params) => dispatch({ type: Counts.add, payload: parseInt(params.count, 10) || 0 }),
       },
       { component: DemoPages, path: '/demo', exact: true, loadData: DemoPageLoadData },
     ],

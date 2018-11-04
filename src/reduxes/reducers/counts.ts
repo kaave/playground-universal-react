@@ -13,5 +13,6 @@ const initialState: State = {
 export const reducers = {
   count: reducerWithInitialState(initialState.count)
     .case(Counts.increment, state => state + 1)
-    .case(Counts.decrement, state => state - 1),
+    .case(Counts.decrement, state => state - 1)
+    .case(Counts.add, (state, payload) => state + payload),
 };

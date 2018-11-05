@@ -10,7 +10,7 @@ import { connectRouter, routerMiddleware } from 'connected-react-router';
 import loggerMiddleware from 'redux-logger';
 import createSagaMiddleware, { SagaMiddleware, END } from 'redux-saga';
 
-import rootReducer from './reducers';
+import { createRootReducer } from './reducers';
 import { rootSaga } from './sagas/';
 
 const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
@@ -33,7 +33,7 @@ export function getStore({
   const store: Store & {
     runSaga: SagaMiddleware<typeof rootSaga>['run'];
     close: () => void;
-  } = createStore(connectRouter(history)(rootReducer), initialState, composeEnhancers(applyMiddleware(...middlewares)));
+  } = createStore(createRootReducer(history), initialState, composeEnhancers(applyMiddleware(...middlewares)));
 
   if (isServer) {
     store.runSaga = sagaMiddleware.run;

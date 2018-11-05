@@ -5,6 +5,7 @@ import { TransitionGroup, CSSTransition, Transition } from 'react-transition-gro
 
 import format from 'date-fns/format';
 import { renderRoutes, RouteConfigComponentProps } from 'react-router-config';
+import { ConnectedRouterProps } from 'connected-react-router';
 import Helmet from 'react-helmet-async';
 import { returntypeof } from 'react-redux-typescript';
 
@@ -23,7 +24,7 @@ const connectToStore = connect(
 const stateProps = returntypeof(mapStateToProps);
 const dispatchProps = returntypeof(mapDispatchToProps);
 
-type AppProps = typeof stateProps & typeof dispatchProps & RouteConfigComponentProps;
+type AppProps = typeof stateProps & typeof dispatchProps & RouteConfigComponentProps & ConnectedRouterProps;
 
 export interface AppState {
   counter: number;

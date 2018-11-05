@@ -61,7 +61,7 @@
     }
   },
   "dependencies": {
-    "connected-react-router": "^4.5.0",
+    "connected-react-router": "^5.0.0",
     "date-fns": "^1.29.0",
     "dotenv": "^6.1.0",
     "ejs": "^2.6.1",

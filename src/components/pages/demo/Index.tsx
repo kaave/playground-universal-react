@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 
 import { Helmet } from '~/components/common/Helmet';
 import CSSModules from '~/utils/cssModules';
@@ -17,9 +16,6 @@ function DemoPage(): JSX.Element {
     <section styleName="Demo">
       <Helmet {...{ title, description }} />
       demo
-      <Link to={'/'} styleName="Link">
-        to index
-      </Link>
     </section>
   );
 }

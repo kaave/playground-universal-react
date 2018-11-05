@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { Switch, Link } from 'react-router-dom';
+import { TransitionGroup, CSSTransition, Transition } from 'react-transition-group';
 
 import format from 'date-fns/format';
 import { renderRoutes, RouteConfigComponentProps } from 'react-router-config';
@@ -46,14 +48,23 @@ export default connectToStore(
 
     render() {
       const { counter } = this.state;
+      const currentKey = this.props.location.pathname.split('/')[1] || '/';
 
       return (
         <main id="main" className="Main" role="main">
           <Helmet>
             <title>base title</title>
           </Helmet>
+          <Link to="/">to index</Link>
+          <Link to="/demo">to demo</Link>
           now: {format(new Date())}, auto counter: {counter}, storeCounter: {this.props.count}
-          {this.props.route && renderRoutes(this.props.route.routes)}
+          <TransitionGroup>
+            <CSSTransition key={currentKey} classNames="fade" timeout={5000}>
+              <Switch location={this.props.location}>
+                {this.props.route && renderRoutes(this.props.route.routes)}
+              </Switch>
+            </CSSTransition>
+          </TransitionGroup>
           <button onClick={this.increment}>increment</button>
           <button onClick={this.decrement}>decrement</button>
           <button onClick={this.asyncIncrement}>async increment</button>

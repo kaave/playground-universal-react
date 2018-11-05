@@ -1,5 +1,0 @@
-BasedOnStyle: Google
-ColumnLimit: 120
----
-Language: JavaScript
-DisableFormat: true

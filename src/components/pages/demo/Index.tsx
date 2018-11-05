@@ -13,10 +13,12 @@ const description = 'demo page description';
 
 function DemoPage(): JSX.Element {
   return (
-    <section styleName="Demo">
+    <>
       <Helmet {...{ title, description }} />
-      demo
-    </section>
+      <section styleName="Demo" className="Demo">
+        demo
+      </section>
+    </>
   );
 }
 

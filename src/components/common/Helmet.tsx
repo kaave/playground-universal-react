@@ -2,7 +2,7 @@ import * as React from 'react';
 import ReactHelmet from 'react-helmet-async';
 
 export type TwitterCard = 'summary' | 'summary_large_image';
-export interface Props extends React.Props<{}> {
+export interface HelmetProps extends React.Props<{}> {
   title: string;
   description: string;
   image?: string;
@@ -12,7 +12,16 @@ export interface Props extends React.Props<{}> {
   twitterCard?: TwitterCard;
 }
 
-export function Helmet({ title, description, children, ogType, ogUrl, ogSiteName, twitterCard, image }: Props) {
+const MetaImages = ({ image }: { image: string }) => {
+  return (
+    <>
+      <meta itemProp="image" content={image} />
+      <meta property="og:image" content={image} />
+    </>
+  );
+};
+
+export function Helmet({ title, description, children, ogType, ogUrl, ogSiteName, twitterCard, image }: HelmetProps) {
   return (
     <ReactHelmet>
       <title>{title}</title>
@@ -21,8 +30,7 @@ export function Helmet({ title, description, children, ogType, ogUrl, ogSiteName
       <meta itemProp="description" content={description} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      {image && <meta itemProp="image" content={image} />}
-      {image && <meta property="og:image" content={image} />}
+      {image && <MetaImages image={image} />}
       {ogType && <meta property="og:type" content={ogType} />}
       {ogUrl && <meta property="og:url" content={ogUrl} />}
       {ogSiteName && <meta property="og:site_name" content={ogSiteName} />}

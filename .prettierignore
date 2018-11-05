@@ -3,5 +3,4 @@ assets
 build
 node_modules
 tools
-gulpfile.js
 package.json

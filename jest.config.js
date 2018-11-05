@@ -8,6 +8,7 @@ module.exports = {
   collectCoverageFrom: [
     "src/scripts/**/*.ts",
     "src/scripts/**/*.tsx",
+    "!src/scripts/**/*.stories.*",
     "!src/scripts/**/*.d.ts",
   ]
 };

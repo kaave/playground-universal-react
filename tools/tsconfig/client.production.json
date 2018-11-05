@@ -14,5 +14,5 @@
         "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */
     },
     "include": ["../../src/**/*"],
-    "exclude": ["node_modules", "../../src/server/**/*"]
+    "exclude": ["node_modules", "../../src/**/*.stories.*", "../../src/server/**/*"]
 }

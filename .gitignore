@@ -183,6 +183,7 @@ tags
 ### Manual ###
 
 # caches
+/.cache
 /.cache-loader
 # IntelliJ settings
 /.idea

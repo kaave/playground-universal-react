@@ -20,4 +20,4 @@ function DemoPage(): JSX.Element {
   );
 }
 
-export default CSSModules(DemoPage, styles);
+export default CSSModules(DemoPage, styles) as () => JSX.Element;

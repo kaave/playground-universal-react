@@ -3,7 +3,7 @@ import * as React from 'react';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { matchRoutes as getMatchRoutes, renderRoutes } from 'react-router-config';
-import { HelmetProvider, FilledContext } from 'react-helmet-async';
+import Helmet from 'react-helmet';
 import { Provider as ReactReduxProvider } from 'react-redux';
 import createHistory from 'history/createMemoryHistory';
 
@@ -31,24 +31,23 @@ router.get('*', async (req, res) => {
 
   try {
     const store = getStore({ initialState: {}, history: createHistory(), isServer: true });
-    const helmetContext = {};
     const App = (
-      <HelmetProvider context={helmetContext}>
-        <ReactReduxProvider store={store}>
-          <StaticRouter location={url} context={{}}>
-            {renderRoutes(reactRoutes)}
-          </StaticRouter>
-        </ReactReduxProvider>
-      </HelmetProvider>
+      <ReactReduxProvider store={store}>
+        <StaticRouter location={url} context={{}}>
+          {renderRoutes(reactRoutes)}
+        </StaticRouter>
+      </ReactReduxProvider>
     );
 
     store.runSaga(rootSaga).done.then(() => {
       const markup = renderToString(App);
       const preloadedState = JSON.stringify(store.getState());
+      const helmet = Helmet.renderStatic();
 
       res.render('index', {
         markup,
-        title: (helmetContext as FilledContext).helmet.title,
+        title: helmet.title.toString(),
+        meta: helmet.meta.toString(),
         preloadedState,
         isProduction: process.env.NODE_ENV === 'production',
       });

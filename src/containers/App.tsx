@@ -6,7 +6,7 @@ import { TransitionGroup, CSSTransition, Transition } from 'react-transition-gro
 import format from 'date-fns/format';
 import { renderRoutes, RouteConfigComponentProps } from 'react-router-config';
 import { ConnectedRouterProps } from 'connected-react-router';
-import Helmet from 'react-helmet-async';
+import Helmet from 'react-helmet';
 import { returntypeof } from 'react-redux-typescript';
 
 import { State } from '../reduxes/reducers';

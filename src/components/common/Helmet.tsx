@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ReactHelmet from 'react-helmet-async';
+import ReactHelmet from 'react-helmet';
 
 export type TwitterCard = 'summary' | 'summary_large_image';
 export interface HelmetProps extends React.Props<{}> {

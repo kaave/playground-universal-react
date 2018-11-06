@@ -3,7 +3,6 @@ import * as ReactDOM from 'react-dom';
 import { fromEvent } from 'rxjs';
 import { BrowserRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
-import { HelmetProvider } from 'react-helmet-async';
 import { Provider as ReactReduxProvider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import createHistory from 'history/createBrowserHistory';
@@ -25,13 +24,11 @@ fromEvent(window, 'DOMContentLoaded').subscribe(() => {
   const store = getStore({ initialState, history: createHistory() });
 
   renderMethod(
-    <HelmetProvider>
-      <ReactReduxProvider store={store}>
-        <ConnectedRouter history={history}>
-          <BrowserRouter>{renderRoutes(routes)}</BrowserRouter>
-        </ConnectedRouter>
-      </ReactReduxProvider>
-    </HelmetProvider>,
+    <ReactReduxProvider store={store}>
+      <ConnectedRouter history={history}>
+        <BrowserRouter>{renderRoutes(routes)}</BrowserRouter>
+      </ConnectedRouter>
+    </ReactReduxProvider>,
     mountPoint,
   );
 });

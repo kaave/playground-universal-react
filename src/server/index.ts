@@ -43,7 +43,7 @@ async function main() {
 
   app.use(express.static('./assets'));
   setApiRoutes(app);
-  setGraphQLRoutes(app);
+  setGraphQLRoutes(app, isDevelopment);
 
   app.use('*', router);
 

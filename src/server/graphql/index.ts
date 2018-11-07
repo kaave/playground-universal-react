@@ -63,13 +63,13 @@ const rootValue = {
   courses: getCourses,
 };
 
-export function setGraphQLRoutes(app: Application) {
+export function setGraphQLRoutes(app: Application, isDevelopment: boolean) {
   app.use(
     '/graphql',
     expressGraphQL({
       schema,
       rootValue,
-      graphiql: true,
+      graphiql: isDevelopment,
     }),
   );
 }

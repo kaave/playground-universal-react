@@ -3,3 +3,16 @@
 .-hidden-sp {
     display: none !important;
 }
+
+.ReactModal__Content {
+    opacity: 0;
+    transition: opacity 600ms;
+}
+
+.ReactModal__Content--after-open {
+    opacity: 1;
+}
+
+.ReactModal__Content--before-close {
+    opacity: 0;
+}

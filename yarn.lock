@@ -1224,6 +1224,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-modal@^3.2.1":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@types/react-modal/-/react-modal-3.2.1.tgz#48578bb362fd8be732d4e5c57c137b7e1dfd273d"
+  integrity sha512-EhRC3xjsehC0e8OKz/NmEyjc/ggHxVj4rNu8p/AfSohbn5NHY0V58fj0OZgQPZzXY42v+rLxiO7PL1uOeBfimg==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-redux@6.0.9":
   version "6.0.9"
   resolved "https://registry.yarnpkg.com/@types/react-redux/-/react-redux-6.0.9.tgz#96aa7f5b0716bcc3bfb36ceaa1223118d509f79a"

@@ -4,6 +4,7 @@ import * as express from 'express';
 import { Express } from 'express';
 
 import { setApiRoutes } from './api';
+import { setGraphQLRoutes } from './graphql';
 import router from './routes/';
 
 Dotenv.load();
@@ -42,6 +43,7 @@ async function main() {
 
   app.use(express.static('./assets'));
   setApiRoutes(app);
+  setGraphQLRoutes(app);
 
   app.use('*', router);
 

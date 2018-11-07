@@ -3,7 +3,7 @@ import { RouteConfig } from 'react-router-config';
 
 import App from './containers/App';
 import IndexPages from './components/pages/Index';
-import DemoPages, { loadData as DemoPageLoadData } from './components/pages/demo';
+import DemoPages from './components/pages/demo';
 import { types as Counts } from './reduxes/actions/counts';
 
 export interface RouteConfigWithLoadData extends RouteConfig {
@@ -28,7 +28,7 @@ export default [
         exact: true,
         runDispatch: (dispatch, params) => dispatch({ type: Counts.add, payload: parseInt(params.count, 10) || 0 }),
       },
-      { component: DemoPages, path: '/demo', exact: true, loadData: DemoPageLoadData },
+      { component: DemoPages, path: '/demo', exact: true },
     ],
   },
 ] as RouteConfigWithLoadData[];

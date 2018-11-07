@@ -33,13 +33,20 @@ export interface AppState {
 
 class App extends React.Component<AppProps, AppState> {
   state = { counter: 0, isModalOpen: false };
+  intervalID?: NodeJS.Timer;
 
   componentDidMount() {
     this.startCountup();
   }
 
+  componentWillUnmount() {
+    if (this.intervalID) {
+      clearInterval(this.intervalID);
+    }
+  }
+
   startCountup() {
-    setInterval(() => this.setState({ ...this.state, counter: this.state.counter + 1 }), 1000);
+    this.intervalID = setInterval(() => this.setState({ ...this.state, counter: this.state.counter + 1 }), 1000);
   }
 
   increment = () => this.props.increment();

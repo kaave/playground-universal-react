@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { fromEvent } from 'rxjs';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
-import { Provider as ReactReduxProvider } from 'react-redux';
+import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import createHistory from 'history/createBrowserHistory';
 
@@ -24,11 +24,11 @@ fromEvent(window, 'DOMContentLoaded').subscribe(() => {
   const store = getStore({ initialState, history: createHistory() });
 
   renderMethod(
-    <ReactReduxProvider store={store}>
+    <Provider store={store}>
       <ConnectedRouter history={history}>
-        <BrowserRouter>{renderRoutes(routes)}</BrowserRouter>
+        <Router>{renderRoutes(routes)}</Router>
       </ConnectedRouter>
-    </ReactReduxProvider>,
+    </Provider>,
     mountPoint,
   );
 });

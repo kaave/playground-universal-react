@@ -1,10 +1,10 @@
 import express from 'express';
 import * as React from 'react';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
-import { StaticRouter } from 'react-router-dom';
+import { StaticRouter as Router } from 'react-router-dom';
 import { matchRoutes as getMatchRoutes, renderRoutes } from 'react-router-config';
-import Helmet from 'react-helmet';
-import { Provider as ReactReduxProvider } from 'react-redux';
+import { Helmet } from 'react-helmet';
+import { Provider } from 'react-redux';
 import createHistory from 'history/createMemoryHistory';
 
 import reactRoutes, { RouteConfigWithLoadData } from '../../routes';
@@ -32,11 +32,11 @@ router.get('*', async (req, res) => {
   try {
     const store = getStore({ initialState: {}, history: createHistory(), isServer: true });
     const App = (
-      <ReactReduxProvider store={store}>
-        <StaticRouter location={url} context={{}}>
+      <Provider store={store}>
+        <Router location={url} context={{}}>
           {renderRoutes(reactRoutes)}
-        </StaticRouter>
-      </ReactReduxProvider>
+        </Router>
+      </Provider>
     );
 
     store.runSaga(rootSaga).done.then(() => {

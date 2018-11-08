@@ -14,6 +14,9 @@ type Course {
   description: String
   topic: String
   url: String
+},
+type Mutation {
+  updateCourseTopic(id: Int!, topic: String!): Course
 }
 `);
 
@@ -57,8 +60,13 @@ const coursesData: Course[] = [
 const getCourse = ({ id }: { id: number }) => coursesData.find(course => course.id === id);
 const getCourses = ({ topic }: { topic?: string }) =>
   !topic ? coursesData : coursesData.filter(course => course.topic === topic);
+const updateCourseTopic = ({ id, topic }: { id: number; topic: string }) => {
+  coursesData.filter(course => course.id === id).forEach(course => (course.topic = topic));
+  return coursesData.find(course => course.id === id);
+};
 
 const rootValue = {
+  updateCourseTopic,
   course: getCourse,
   courses: getCourses,
 };

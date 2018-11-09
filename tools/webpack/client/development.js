@@ -4,7 +4,6 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
-const conf = require('../../config');
 const { resolve, rules, plugins, optimization } = require('../base');
 
 const appendRules = [

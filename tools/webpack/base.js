@@ -2,8 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
 
-const conf = require('../config');
-
 exports.resolve = {
   modules: ['node_modules'],
   extensions: ['json', '.tsx', '.ts', '.css', '.js'],

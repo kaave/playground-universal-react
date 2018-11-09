@@ -90,7 +90,8 @@
     "typescript-fsa-redux-saga": "^1.1.1",
     "webpack": "^4.20.2",
     "webpack-dev-middleware": "^3.4.0",
-    "webpack-hot-middleware": "^2.24.2"
+    "webpack-hot-middleware": "^2.24.2",
+    "ws": "^6.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
@@ -125,6 +126,7 @@
     "@types/webpack-env": "^1.13.6",
     "@types/webpack-hot-middleware": "^2.16.4",
     "@types/webpack-node-externals": "^1.6.3",
+    "@types/ws": "^6.0.1",
     "autoprefixer": "^9.3.1",
     "babel-loader": "^8.0.4",
     "browser-sync": "^2.26.3",

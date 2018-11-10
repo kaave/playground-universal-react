@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Switch, Link } from 'react-router-dom';
+import { Switch, NavLink } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import format from 'date-fns/format';
 import { renderRoutes, RouteConfigComponentProps } from 'react-router-config';
@@ -69,10 +69,10 @@ class App extends React.Component<AppProps, AppState> {
         <Modal isOpen={isModalOpen} onCloseClick={this.handleCloseModalClick} />
         <ul className="LinkList">
           <li className="LinkList__cell">
-            <Link to="/">to index</Link>
+            <NavLink to="/">to index</NavLink>
           </li>
           <li className="LinkList__cell">
-            <Link to="/demo">to demo</Link>
+            <NavLink to="/demo">to demo</NavLink>
           </li>
         </ul>
         now: {format(new Date())}, auto counter: {counter}, storeCounter: {this.props.count}

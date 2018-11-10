@@ -2,7 +2,7 @@
 
 ### Node ###
 # Logs
-logs
+# logs
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -182,6 +182,8 @@ tags
 
 ### Manual ###
 
+/logs/*
+!/logs/.gitkeep
 # envs
 /.env*
 !/.env*.example

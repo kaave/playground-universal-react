@@ -1,5 +1,6 @@
 import * as express from 'express';
 import { Express } from 'express';
+import compression from 'compression';
 
 import { setApiRoutes } from './api';
 import router from './routes/';
@@ -28,6 +29,7 @@ async function main(isDevelopment: boolean, port: number) {
     await initializeDevServer(app);
   } else {
     app.use(express.static('./build/client'));
+    app.use(compression({ level: parseInt(process.env.COMPRESS_LEVEL || '', 10) || 9 }));
   }
 
   app.set('view engine', 'ejs');

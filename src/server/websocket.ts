@@ -10,7 +10,7 @@ async function main(port: number) {
 }
 
 export function runWS() {
-  const port = parseInt(process.env.PORT_WS || '', 10) || 4000;
+  const port = parseInt(process.env.PORT_WEBSOCKET || '', 10) || 4000;
 
   main(port).then(() => console.log(`websocket: port[${port}]`));
 }

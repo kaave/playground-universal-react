@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const { GenerateSW } = require('workbox-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const { resolve, rules, plugins, optimization } = require('../base');
 
@@ -57,6 +58,8 @@ module.exports = {
   ]},
   plugins: [
     ...plugins,
+    new Dotenv(),
+    new Dotenv({ path: path.join(process.cwd(), '.env.client') }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css'

@@ -43,7 +43,7 @@ async function main(isDevelopment: boolean, port: number) {
 
 export function runHttp() {
   const isDevelopment = process.env.NODE_ENV === 'development' || false;
-  const port = parseInt(process.env.PORT || '', 10) || 3000;
+  const port = parseInt(process.env.PORT_HTTP || '', 10) || 3000;
 
   main(isDevelopment, port).then(() => console.log(`http: port[${port}]`));
 }

@@ -3,6 +3,10 @@ const webpack = require('webpack');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const DotenvWebpack = require('dotenv-webpack');
+const Dotenv = require('dotenv');
+
+Dotenv.load();
 
 const { resolve, rules, plugins, optimization } = require('../base');
 
@@ -70,6 +74,8 @@ module.exports = {
   optimization,
   plugins: [
     ...plugins,
+    new DotenvWebpack(),
+    new DotenvWebpack({ path: path.join(process.cwd(), '.env.client') }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new ForkTsCheckerWebpackPlugin(),
@@ -77,9 +83,9 @@ module.exports = {
       {
         open: false,
         host: 'localhost',
-        port: 3000,
+        port: parseInt(process.env.PORT_DEV, 10) || 3000,
         files: ['assets/**/*', 'src/views/**/*.ejs'],
-        proxy: 'http://localhost:8880',
+        proxy: `http://localhost:${parseInt(process.env.PORT_HTTP, 10) || 3000}`,
       },
       {
         reload: false,

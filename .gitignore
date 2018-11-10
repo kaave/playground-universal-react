@@ -182,6 +182,9 @@ tags
 
 ### Manual ###
 
+# envs
+/.env*
+!/.env*.example
 # caches
 /.cache
 /.cache-loader

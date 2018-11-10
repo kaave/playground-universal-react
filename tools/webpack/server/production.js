@@ -4,6 +4,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const NodeExternals = require('webpack-node-externals');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const { resolve, rules, plugins } = require('../base');
 
@@ -57,8 +58,10 @@ module.exports = {
   externals: NodeExternals(),
   plugins: [
     ...plugins,
+    new Dotenv(),
+    new Dotenv({ path: path.join(process.cwd(), '.env.server') }),
     new MiniCssExtractPlugin({
-      filename: 'nouse.css',
+      filename: 'THIS_FILE_IS_NOT_USE.css',
       chunkFilename: '[id].css'
     }),
     new ForkTsCheckerWebpackPlugin({ tsconfig: tsconfigPath }),

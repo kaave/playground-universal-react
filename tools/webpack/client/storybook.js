@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const conf = require('../../config');
 const { resolve, rules, plugins, optimization } = require('../base');
@@ -69,6 +70,8 @@ module.exports = {
   optimization,
   plugins: [
     ...plugins,
+    new Dotenv(),
+    new Dotenv({ path: path.join(process.cwd(), '.env.client') }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new ForkTsCheckerWebpackPlugin(),

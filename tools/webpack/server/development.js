@@ -4,6 +4,7 @@ const NodeExternals = require('webpack-node-externals');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const NodemonPlugin = require('nodemon-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const { resolve, rules, plugins } = require('../base');
 
@@ -64,6 +65,8 @@ module.exports = {
   ]},
   plugins: [
     ...plugins,
+    new Dotenv(),
+    new Dotenv({ path: path.join(process.cwd(), '.env.server') }),
     new webpack.NamedModulesPlugin(),
     new webpack.BannerPlugin({ banner: 'require("source-map-support").install();', raw: true, entryOnly: false }),
     new ForkTsCheckerWebpackPlugin(),

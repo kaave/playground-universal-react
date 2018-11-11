@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+  db:
+    container_name: ${CONTAINER_NAME_DB}
+    image: postgres:alpine
+    restart: always
+    ports:
+      - "${CONTAINER_EXPOSE_PORT_DB}:5432"
+    networks:
+      main:
+        aliases:
+          - db
+  memcached:
+    container_name: ${CONTAINER_NAME_MEMCACHED}
+    image: memcached:alpine
+    restart: always
+    ports:
+      - "${CONTAINER_EXPOSE_PORT_MEMCACHED}:11211"
+    networks:
+      main:
+        aliases:
+          - memcached
+
+networks:
+  main:

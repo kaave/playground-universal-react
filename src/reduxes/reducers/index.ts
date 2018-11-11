@@ -11,4 +11,4 @@ export const createRootReducer = (history: History) =>
   combineReducers({
     ...Counts.reducers,
     router: connectRouter(history),
-  } as any); // FIXME: use any
+  }); // FIXME: use any

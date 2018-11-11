@@ -6,7 +6,7 @@ declare global {
 
 import { History } from 'history';
 import { applyMiddleware, compose, createStore, Middleware, Store } from 'redux';
-import { connectRouter, routerMiddleware } from 'connected-react-router';
+import { routerMiddleware } from 'connected-react-router';
 import loggerMiddleware from 'redux-logger';
 import createSagaMiddleware, { SagaMiddleware, END } from 'redux-saga';
 
@@ -46,7 +46,7 @@ export function getStore({
     module.hot.accept('./reducers', () => {
       const { rootReducer: nextReducer } = require('./reducers');
 
-      store.replaceReducer(connectRouter(history)(nextReducer));
+      store.replaceReducer(nextReducer(history));
     });
   }
 

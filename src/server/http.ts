@@ -33,7 +33,7 @@ async function initializeDevServer(expressApp: express.Express) {
   );
 }
 
-async function main() {
+export async function runHttp() {
   const app = express.default();
 
   if (isDevelopment) {
@@ -98,8 +98,4 @@ async function main() {
     );
   }
   app.listen(port);
-}
-
-export function runHttp() {
-  main().then(() => console.log(`http: port[${port}]`));
 }

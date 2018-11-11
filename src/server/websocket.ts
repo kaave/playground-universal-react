@@ -19,15 +19,11 @@ const logger = winston.createLogger({
   format: winston.format.combine(logFormat),
 });
 
-async function main() {
+export async function runWS() {
   const wss = new WebSocketServer({ port });
 
   wss.on('connection', ws => {
     ws.on('message', message => logger.info(`received: ${message}`));
     setInterval(() => ws.send(`${new Date()}`), 1000);
   });
-}
-
-export function runWS() {
-  main().then(() => console.log(`websocket: port[${port}]`));
 }

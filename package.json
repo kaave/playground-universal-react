@@ -61,6 +61,10 @@
       "pre-commit": "run-s typecheck safe-guard"
     }
   },
+  "resolutions": {
+    "@types/react": "16.7.3",
+    "@types/react-router": "4.4.1"
+  },
   "dependencies": {
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
@@ -74,9 +78,9 @@
     "express-winston": "^3.0.1",
     "history": "^4.7.2",
     "lodash": "^4.17.11",
-    "react": "^16.6.1",
+    "react": "^16.6.3",
     "react-css-modules": "^4.7.7",
-    "react-dom": "^16.6.1",
+    "react-dom": "^16.6.3",
     "react-modal": "^3.6.1",
     "react-redux": "^5.1.1",
     "react-redux-typescript": "^3.0.0-rc.3",
@@ -119,14 +123,14 @@
     "@types/history": "^4.7.2",
     "@types/jest": "^23.3.9",
     "@types/lodash": "^4.14.118",
-    "@types/react": "^16.4.15",
+    "@types/react": "^16.7.3",
     "@types/react-css-modules": "^4.6.2",
     "@types/react-dom": "^16.0.9",
     "@types/react-helmet": "^5.0.7",
     "@types/react-modal": "^3.2.1",
     "@types/react-redux": "6.0.9",
     "@types/react-router": "^4.4.1",
-    "@types/react-router-config": "^1.0.9",
+    "@types/react-router-config": "^1.1.0",
     "@types/react-router-dom": "^4.3.1",
     "@types/react-transition-group": "^2.0.14",
     "@types/redux-logger": "^3.0.6",
@@ -184,7 +188,7 @@
     "ts-node": "^7.0.1",
     "tsconfig-paths-webpack-plugin": "^3.2.0",
     "tslint": "^5.11.0",
-    "tslint-config-prettier": "^1.15.0",
+    "tslint-config-prettier": "^1.16.0",
     "tslint-plugin-prettier": "^2.0.1",
     "tslint-react": "^3.6.0",
     "typescript": "^3.1.6",

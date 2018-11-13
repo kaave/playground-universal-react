@@ -12,7 +12,7 @@ export interface RouteConfigWithLoadData extends RouteConfig {
 }
 
 export default [
-  {
+  ({
     component: App,
     routes: [
       { component: IndexPages, path: '/', exact: true },
@@ -20,15 +20,16 @@ export default [
         component: IndexPages,
         path: '/increment',
         exact: true,
-        runDispatch: dispatch => dispatch({ type: Counts.asyncIncrement }),
+        runDispatch: (dispatch: Dispatch) => dispatch({ type: Counts.asyncIncrement }),
       },
       {
         component: IndexPages,
         path: '/add/:count',
         exact: true,
-        runDispatch: (dispatch, params) => dispatch({ type: Counts.add, payload: parseInt(params.count, 10) || 0 }),
+        runDispatch: (dispatch: Dispatch, params: any) =>
+          dispatch({ type: Counts.add, payload: parseInt(params.count, 10) || 0 }),
       },
       { component: DemoPages, path: '/demo', exact: true },
     ],
-  },
+  } as unknown) as RouteConfigWithLoadData,
 ] as RouteConfigWithLoadData[];

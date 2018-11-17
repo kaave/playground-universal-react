@@ -1,6 +1,6 @@
 module.exports = {
   extends: ['stylelint-config-standard'],
-  ignoreFiles: ['node_modules/**/*', 'assets/**/*', '.tmp/**/*', 'build/**/*', 'src/assets/**/*'],
+  ignoreFiles: ['node_modules/**/*', 'assets/**/*', '.tmp/**/*', 'build/**/*', 'src/coverage/**/*', 'src/assets/**/*'],
   rules: {
     /*
      * ECSS basic rules

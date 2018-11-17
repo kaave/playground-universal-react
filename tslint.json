@@ -7,7 +7,7 @@
         "tslint-config-prettier"
     ],
     "linterOptions": {
-        "exclude": ["node_modules/**", "assets/**", "src/assets/**", "build/**"]
+        "exclude": ["node_modules/**", "assets/**", "src/assets/**", "src/coverage/**", ".tmp/**", "build/**"]
     },
     "rules": {
         // コンソール禁止 無効化 babel挟むとかしてどっかではずせばよい

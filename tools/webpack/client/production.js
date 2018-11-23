@@ -4,6 +4,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { GenerateSW } = require('workbox-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
@@ -42,6 +43,23 @@ const appendRules = [
 ];
 
 const publicPath = '/';
+const usePlugins = [
+  ...plugins,
+  new Dotenv(),
+  new Dotenv({ path: path.join(process.cwd(), '.env.client') }),
+  new MiniCssExtractPlugin({
+    filename: '[name].css',
+    chunkFilename: '[id].css'
+  }),
+  new ForkTsCheckerWebpackPlugin({
+    tsconfig: tsconfigPath,
+  }),
+  new GenerateSW(),
+];
+
+if (process.env.IS_ANALYZE) {
+  usePlugins.push(new BundleAnalyzerPlugin());
+}
 
 module.exports = {
   mode: 'production',
@@ -56,19 +74,7 @@ module.exports = {
   resolve: { ...resolve, plugins: [
     new TsconfigPathsPlugin({ configFile: tsconfigPath }),
   ]},
-  plugins: [
-    ...plugins,
-    new Dotenv(),
-    new Dotenv({ path: path.join(process.cwd(), '.env.client') }),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[id].css'
-    }),
-    new ForkTsCheckerWebpackPlugin({
-      tsconfig: tsconfigPath,
-    }),
-    new GenerateSW(),
-  ],
+  plugins: usePlugins,
   module: {
     rules: [...rules, ...appendRules],
   },

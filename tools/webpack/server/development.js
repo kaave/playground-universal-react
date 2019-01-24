@@ -70,7 +70,10 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new webpack.BannerPlugin({ banner: 'require("source-map-support").install();', raw: true, entryOnly: false }),
     new ForkTsCheckerWebpackPlugin(),
-    new NodemonPlugin({ nodeArgs: ['--inspect'] }),
+    new NodemonPlugin({
+      nodeArgs: ['--inspect'],
+      script: path.join(process.cwd(), '.tmp', 'server.js'),
+    }),
   ],
   module: {
     rules: [...rules, ...appendRules],

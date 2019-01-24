@@ -39,19 +39,22 @@ router.get('*', async (req, res) => {
       </Provider>
     );
 
-    store.runSaga(rootSaga).done.then(() => {
-      const markup = renderToString(App);
-      const preloadedState = JSON.stringify(store.getState());
-      const helmet = Helmet.renderStatic();
+    store
+      .runSaga(rootSaga)
+      .toPromise()
+      .then(() => {
+        const markup = renderToString(App);
+        const preloadedState = JSON.stringify(store.getState());
+        const helmet = Helmet.renderStatic();
 
-      res.render('index', {
-        markup,
-        title: helmet.title.toString(),
-        meta: helmet.meta.toString(),
-        preloadedState,
-        isProduction: process.env.NODE_ENV === 'production',
+        res.render('index', {
+          markup,
+          title: helmet.title.toString(),
+          meta: helmet.meta.toString(),
+          preloadedState,
+          isProduction: process.env.NODE_ENV === 'production',
+        });
       });
-    });
 
     renderToStaticMarkup(App); // start redux-saga
     dispatches.forEach(func => func(store.dispatch, exactRoute.match.params));

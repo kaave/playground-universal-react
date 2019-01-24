@@ -15,15 +15,8 @@ import { rootSaga } from './sagas/';
 
 const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
-export function getStore({
-  initialState,
-  history,
-  isServer,
-}: {
-  initialState: object;
-  history: History<any>;
-  isServer?: boolean;
-}) {
+export function getStore(argv: { initialState: object; history: History<any>; isServer?: boolean }) {
+  const { initialState, history, isServer } = argv;
   const sagaMiddleware = createSagaMiddleware();
   const middlewares: Middleware[] = [sagaMiddleware, routerMiddleware(history)];
   if (!isServer) {

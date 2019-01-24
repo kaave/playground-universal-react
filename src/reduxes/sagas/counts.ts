@@ -1,4 +1,4 @@
-import { SagaIterator, delay } from 'redux-saga';
+import { SagaIterator } from 'redux-saga';
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { bindAsyncAction } from 'typescript-fsa-redux-saga';
 
@@ -12,7 +12,7 @@ const asyncIncrementWorker = bindAsyncAction(asyncIncrement)(function*(): SagaIt
 });
 
 const asyncDecrementWorker = bindAsyncAction(asyncDecrement)(function*(): SagaIterator {
-  yield call(delay, 1000);
+  yield call(wait(1000));
   yield put({ type: types.decrement });
 });
 

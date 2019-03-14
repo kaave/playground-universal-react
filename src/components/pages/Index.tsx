@@ -1,15 +1,12 @@
 import * as React from 'react';
 
-import { Helmet } from '../common/Helmet';
+import * as Meta from '~/value-objects/Meta';
+
+export const meta: Meta.Meta = Meta.create({
+  title: 'root page',
+  description: 'root page description',
+});
 
 export default function IndexPage(): JSX.Element {
-  const title = 'root page';
-  const description = 'root page description';
-
-  return (
-    <section className="Index">
-      <Helmet {...{ title, description }} />
-      index
-    </section>
-  );
+  return <section className="Index">index</section>;
 }

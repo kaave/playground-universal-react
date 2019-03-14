@@ -3,10 +3,10 @@ import * as React from 'react';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { StaticRouter as Router } from 'react-router-dom';
 import { matchRoutes as getMatchRoutes, renderRoutes } from 'react-router-config';
-import { Helmet } from 'react-helmet';
 import { Provider } from 'react-redux';
 import createHistory from 'history/createMemoryHistory';
 
+import { Meta } from '~/value-objects/Meta';
 import reactRoutes, { RouteConfigWithLoadData } from '../../routes';
 import { getStore } from '../../reduxes/store';
 import { rootSaga } from '../../reduxes/sagas';
@@ -28,6 +28,11 @@ router.get('*', async (req, res) => {
     .map(({ route }) => (route as RouteConfigWithLoadData).runDispatch)
     .filter(dispatch => dispatch != null)
     .map(dispatch => dispatch!);
+  const meta = matchRoutes
+    .map(({ route }) => (route as RouteConfigWithLoadData).meta)
+    .filter(m => m != null)
+    .map(m => m!)
+    .reduce<Meta>((tmp, m) => ({ ...tmp, ...m }), {});
 
   try {
     const store = getStore({ initialState: {}, history: createHistory(), isServer: true });
@@ -45,12 +50,12 @@ router.get('*', async (req, res) => {
       .then(() => {
         const markup = renderToString(App);
         const preloadedState = JSON.stringify(store.getState());
-        const helmet = Helmet.renderStatic();
 
         res.render('index', {
           markup,
-          title: helmet.title.toString(),
-          meta: helmet.meta.toString(),
+          title: meta.title || '',
+          // meta: helmet.meta.toString(),
+          meta: '',
           preloadedState,
           isProduction: process.env.NODE_ENV === 'production',
         });

@@ -5,7 +5,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import format from 'date-fns/format';
 import { renderRoutes, RouteConfigComponentProps } from 'react-router-config';
 import { ConnectedRouterProps } from 'connected-react-router';
-import Helmet from 'react-helmet';
+import * as Meta from '~/value-objects/Meta';
 import { returntypeof } from 'react-redux-typescript';
 
 import { State } from '../reduxes/reducers';
@@ -30,6 +30,8 @@ export interface AppState {
   counter: number;
   isModalOpen: boolean;
 }
+
+export const meta: Meta.Meta = Meta.create({ title: 'base title' });
 
 class App extends React.Component<AppProps, AppState> {
   state = { counter: 0, isModalOpen: false };
@@ -63,9 +65,6 @@ class App extends React.Component<AppProps, AppState> {
 
     return (
       <main id="main" className="Main" role="main">
-        <Helmet>
-          <title>base title</title>
-        </Helmet>
         <Modal isOpen={isModalOpen} onCloseClick={this.handleCloseModalClick} />
         <ul className="LinkList">
           <li className="LinkList__cell">

@@ -1,20 +1,19 @@
 import * as React from 'react';
 
-import { Helmet } from '~/components/common/Helmet';
 import CSSModules from '~/utils/cssModules';
 import styles from './style.css';
+import * as Meta from '~/value-objects/Meta';
 
-const title = 'demo page';
-const description = 'demo page description';
+export const meta: Meta.Meta = Meta.create({
+  title: 'demo page',
+  description: 'demo page description',
+});
 
 function DemoPage(): JSX.Element {
   return (
-    <>
-      <Helmet {...{ title, description }} />
-      <section styleName="Demo" className="Demo">
-        demo
-      </section>
-    </>
+    <section styleName="Demo" className="Demo">
+      demo
+    </section>
   );
 }
 

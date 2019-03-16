@@ -4,7 +4,6 @@ import { History } from 'history';
 
 import * as Counts from './counts';
 
-// tslint:disable-next-line no-empty-interface
 export type State = Counts.State & RouterState;
 
 export const createRootReducer = (history: History) =>

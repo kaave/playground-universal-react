@@ -8,7 +8,7 @@ import cookieParser from 'cookie-parser';
 import expressSession from 'express-session';
 
 import { setApiRoutes } from './api';
-import router from './routes/';
+import router from './routes';
 
 const isDevelopment = process.env.NODE_ENV === 'development' || false;
 const port = parseInt(process.env.PORT_HTTP || '', 10) || 3000;

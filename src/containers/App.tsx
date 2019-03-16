@@ -48,20 +48,23 @@ class App extends React.Component<AppProps, AppState> {
   }
 
   startCountup() {
-    this.intervalID = setInterval(() => this.setState({ ...this.state, counter: this.state.counter + 1 }), 1000);
+    this.intervalID = setInterval(
+      () => this.setState(prevState => ({ ...prevState, counter: prevState.counter + 1 })),
+      1000,
+    );
   }
 
   increment = () => this.props.increment();
   decrement = () => this.props.decrement();
   asyncIncrement = () => this.props.asyncIncrement();
   asyncDecrement = () => this.props.asyncDecrement();
-
   handleOpenModalClick = () => this.setState({ isModalOpen: true });
   handleCloseModalClick = () => this.setState({ isModalOpen: false });
 
   render() {
+    const { location, count, route } = this.props;
     const { counter, isModalOpen } = this.state;
-    const currentKey = this.props.location.pathname.split('/')[1] || '/';
+    const currentKey = location.pathname.split('/')[1] || '/';
 
     return (
       <main id="main" className="Main" role="main">
@@ -74,17 +77,27 @@ class App extends React.Component<AppProps, AppState> {
             <NavLink to="/demo">to demo</NavLink>
           </li>
         </ul>
-        now: {format(new Date())}, auto counter: {counter}, storeCounter: {this.props.count}
+        now: {format(new Date())}, auto counter: {counter}, storeCounter: {count}
         <TransitionGroup>
           <CSSTransition key={currentKey} classNames="fade" timeout={5000}>
-            <Switch location={this.props.location}>{this.props.route && renderRoutes(this.props.route.routes)}</Switch>
+            <Switch location={location}>{route && renderRoutes(route.routes)}</Switch>
           </CSSTransition>
         </TransitionGroup>
-        <button onClick={this.increment}>increment</button>
-        <button onClick={this.decrement}>decrement</button>
-        <button onClick={this.asyncIncrement}>async increment</button>
-        <button onClick={this.asyncDecrement}>async decrement</button>
-        <button onClick={this.handleOpenModalClick}>Open modal</button>
+        <button type="button" onClick={this.increment}>
+          increment
+        </button>
+        <button type="button" onClick={this.decrement}>
+          decrement
+        </button>
+        <button type="button" onClick={this.asyncIncrement}>
+          async increment
+        </button>
+        <button type="button" onClick={this.asyncDecrement}>
+          async decrement
+        </button>
+        <button type="button" onClick={this.handleOpenModalClick}>
+          Open modal
+        </button>
       </main>
     );
   }

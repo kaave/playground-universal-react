@@ -39,7 +39,9 @@ export class Modal extends React.Component<Props, {}> {
     return (
       <ReactModal isOpen={isOpen} style={styles}>
         Modal
-        <button onClick={onCloseClick}>×</button>
+        <button type="button" onClick={onCloseClick}>
+          ×
+        </button>
       </ReactModal>
     );
   }

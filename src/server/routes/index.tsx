@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import createHistory from 'history/createMemoryHistory';
 
 import { Meta } from '~/value-objects/Meta';
-import reactRoutes, { RouteConfigWithLoadData } from '../../routes';
+import reactRoutes, { RouteConfigWithLoadData, RunDispatch } from '../../routes';
 import { getStore } from '../../reduxes/store';
 import { rootSaga } from '../../reduxes/sagas';
 
@@ -27,11 +27,11 @@ router.get('*', async (req, res) => {
   const dispatches = matchRoutes
     .map(({ route }) => (route as RouteConfigWithLoadData).runDispatch)
     .filter(dispatch => dispatch != null)
-    .map(dispatch => dispatch!);
+    .map(dispatch => dispatch as RunDispatch);
   const meta = matchRoutes
     .map(({ route }) => (route as RouteConfigWithLoadData).meta)
     .filter(m => m != null)
-    .map(m => m!)
+    .map(m => m as Meta)
     .reduce<Meta>((tmp, m) => ({ ...tmp, ...m }), {});
 
   try {

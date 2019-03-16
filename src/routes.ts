@@ -7,8 +7,9 @@ import IndexPages, { meta as IndexMeta } from './components/pages/Index';
 import DemoPages, { meta as DemoMeta } from './components/pages/demo';
 import { types as Counts } from './reduxes/actions/counts';
 
+export type RunDispatch = (dispatch: Dispatch, params?: any) => void;
 export interface RouteConfigWithLoadData extends RouteConfig {
-  runDispatch?: (dispatch: Dispatch, params?: any) => void;
+  runDispatch?: RunDispatch;
   routes?: RouteConfigWithLoadData[];
   meta?: Meta;
 }

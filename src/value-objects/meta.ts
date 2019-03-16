@@ -17,7 +17,7 @@ export interface Twitter {
 }
 
 function setter<T>(to?: T, values?: T): T {
-  return { ...(to || ({} as T)), ...(values || ({} as T)) };
+  return { ...(to || (({} as unknown) as T)), ...(values || (({} as unknown) as T)) };
 }
 
 export function create(from: Meta = {}): Meta {

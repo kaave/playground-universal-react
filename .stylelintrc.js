@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['stylelint-config-standard'],
+  extends: ['stylelint-config-prettier', 'stylelint-config-standard'],
   ignoreFiles: ['node_modules/**/*', 'assets/**/*', '.tmp/**/*', 'build/**/*', 'src/coverage/**/*', 'src/assets/**/*'],
   rules: {
     /*
@@ -29,31 +29,10 @@ module.exports = {
     'declaration-block-no-shorthand-property-overrides': true,
 
     /*
-     * prettier
-     */
-    'max-line-length': null,
-    indentation: null,
-    'no-extra-semicolons': null,
-    'declaration-block-semicolon-newline-after': null,
-    'declaration-block-semicolon-newline-before': null,
-    'declaration-block-semicolon-space-after': null,
-    'declaration-block-semicolon-space-before': null,
-    'string-quotes': null,
-    'block-closing-brace-empty-line-before': null,
-    'block-closing-brace-newline-after': null,
-    'block-closing-brace-newline-before': null,
-    'block-closing-brace-space-after': null,
-    'block-closing-brace-space-before': null,
-    'block-opening-brace-newline-after': null,
-    'block-opening-brace-newline-before': null,
-    'block-opening-brace-space-after': null,
-    'block-opening-brace-space-before': null,
-    'number-leading-zero': null,
-    'number-no-trailing-zeros': null,
-
-    /*
      * Manual
      */
+    // indentはprettierが受け持つ
+    indentation: null,
     // コメント記号とコメント本文の間にスペースを共用する 無効化 IntelliJと相性が悪い
     'comment-whitespace-inside': null,
     // @なにがしで意味不明なものを無効化 mixin関係を通す

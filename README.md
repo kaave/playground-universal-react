@@ -29,7 +29,6 @@
 | :------------------------ | :--------------------------------------------------- |
 | react                     | 言わずもがな                                         |
 | react-dom                 | 言わずもがな                                         |
-| react-css-modules         | CSS module 用                                        |
 | react-modal               | モーダル用                                           |
 | react-transition-group    | アニメ用                                             |
 | redux                     | 言わずもがな                                         |

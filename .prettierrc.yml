@@ -6,7 +6,7 @@ singleQuote: true
 trailingComma: all
 
 overrides:
-- files: "*.css"
+- files: "*.scss"
   options:
     parser: css
     tabWidth: 4

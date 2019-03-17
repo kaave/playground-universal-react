@@ -1,33 +1,8 @@
 module.exports = {
-  extends: ['stylelint-config-prettier', 'stylelint-config-standard'],
+  extends: ['stylelint-config-prettier', 'stylelint-config-recommended-scss'],
   ignoreFiles: ['node_modules/**/*', 'assets/**/*', '.tmp/**/*', 'build/**/*', 'src/coverage/**/*', 'src/assets/**/*'],
+  syntax: 'scss',
   rules: {
-    /*
-     * ECSS basic rules
-     */
-    // 空のブロックを禁止
-    'block-no-empty': true,
-    // 不正なhexを禁止
-    'color-no-invalid-hex': true,
-    // コロンのあとにはスペース
-    'declaration-colon-space-after': 'always',
-    // コロンの前にはスペースなし
-    'declaration-colon-space-before': 'never',
-    'function-url-quotes': 'always',
-    'media-feature-colon-space-after': 'always',
-    'media-feature-colon-space-before': 'never',
-    'media-feature-name-no-vendor-prefix': true,
-    'max-empty-lines': 2,
-    'property-no-vendor-prefix': true,
-    'declaration-block-no-duplicate-properties': true,
-    'declaration-block-trailing-semicolon': 'always',
-    'selector-list-comma-newline-after': 'always-multi-line',
-    'selector-max-id': 0,
-    'value-no-vendor-prefix': true,
-    'function-linear-gradient-no-nonstandard-direction': true,
-    'selector-max-universal': 0,
-    'declaration-block-no-shorthand-property-overrides': true,
-
     /*
      * Manual
      */
@@ -57,5 +32,8 @@ module.exports = {
     ],
     // カンマの後ろにはスペース
     'function-comma-space-after': 'always-single-line',
+
+    // @extendは難しいから近視
+    'at-rule-blacklist': ['extend'],
   },
 };

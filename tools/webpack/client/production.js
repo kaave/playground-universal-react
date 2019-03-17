@@ -20,25 +20,14 @@ const appendRules = [
         loader: 'ts-loader',
         options: {
           configFile: tsconfigPath,
-          transpileOnly: true
+          transpileOnly: true,
         },
       },
     ],
   },
   {
-    test: /\.css$/,
-    use: [
-      MiniCssExtractPlugin.loader,
-      {
-        loader: 'css-loader',
-        options: {
-          importLoaders: 1,
-          localIdentName: '[name]__[local]___[hash:base64:5]',
-          modules: true,
-        },
-      },
-      'postcss-loader',
-    ],
+    test: /\.scss$/,
+    use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
   },
 ];
 
@@ -49,7 +38,7 @@ const usePlugins = [
   new Dotenv({ path: path.join(process.cwd(), '.env.client') }),
   new MiniCssExtractPlugin({
     filename: '[name].css',
-    chunkFilename: '[id].css'
+    chunkFilename: '[id].css',
   }),
   new ForkTsCheckerWebpackPlugin({
     tsconfig: tsconfigPath,
@@ -71,9 +60,7 @@ module.exports = {
     filename: '[name].js',
     publicPath,
   },
-  resolve: { ...resolve, plugins: [
-    new TsconfigPathsPlugin({ configFile: tsconfigPath }),
-  ]},
+  resolve: { ...resolve, plugins: [new TsconfigPathsPlugin({ configFile: tsconfigPath })] },
   plugins: usePlugins,
   module: {
     rules: [...rules, ...appendRules],
@@ -84,14 +71,14 @@ module.exports = {
       new TerserPlugin({
         parallel: true,
         extractComments: {
-          filename: 'licenses.txt'
+          filename: 'licenses.txt',
         },
         terserOptions: {
           output: {
-            comments: /^\**!|@preserve|@license|@cc_on/
-          }
-        }
-      })
+            comments: /^\**!|@preserve|@license|@cc_on/,
+          },
+        },
+      }),
     ],
   },
 };

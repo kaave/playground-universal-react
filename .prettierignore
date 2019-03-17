@@ -2,7 +2,6 @@ assets
 .tmp
 build
 node_modules
-tools
 package.json
 src/assets
 src/coverage

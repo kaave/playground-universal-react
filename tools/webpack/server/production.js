@@ -18,26 +18,14 @@ const appendRules = [
         loader: 'ts-loader',
         options: {
           configFile: tsconfigPath,
-          transpileOnly: true
+          transpileOnly: true,
         },
       },
     ],
   },
   {
-    test: /\.css$/,
-    use: [
-      // 'isomorphic-style-loader',
-      MiniCssExtractPlugin.loader,
-      {
-        loader: 'css-loader',
-        options: {
-          importLoaders: 1,
-          localIdentName: '[name]__[local]___[hash:base64:5]',
-          modules: true,
-        },
-      },
-      'postcss-loader',
-    ],
+    test: /\.scss$/,
+    use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
   },
 ];
 
@@ -49,11 +37,9 @@ module.exports = {
     path: path.join(process.cwd(), 'build'),
     filename: 'server.js',
   },
-  resolve: { ...resolve, plugins: [
-    new TsconfigPathsPlugin({ configFile: tsconfigPath }),
-  ]},
+  resolve: { ...resolve, plugins: [new TsconfigPathsPlugin({ configFile: tsconfigPath })] },
   optimization: {
-    minimize: false
+    minimize: false,
   },
   externals: NodeExternals(),
   plugins: [
@@ -62,7 +48,7 @@ module.exports = {
     new Dotenv({ path: path.join(process.cwd(), '.env.server') }),
     new MiniCssExtractPlugin({
       filename: 'THIS_FILE_IS_NOT_USE.css',
-      chunkFilename: '[id].css'
+      chunkFilename: '[id].css',
     }),
     new ForkTsCheckerWebpackPlugin({ tsconfig: tsconfigPath }),
   ],
@@ -70,4 +56,3 @@ module.exports = {
     rules: [...rules, ...appendRules],
   },
 };
-

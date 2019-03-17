@@ -15,34 +15,29 @@ const appendRules = [
       {
         loader: 'ts-loader',
         options: {
-          transpileOnly: true
+          transpileOnly: true,
         },
       },
     ],
   },
   {
-    test: /\.css$/,
+    test: /\.scss$/,
     use: [
       {
         loader: 'style-loader',
-        options: {
-          sourceMap: true,
-        },
+        options: { sourceMap: true },
       },
       {
         loader: 'css-loader',
-        options: {
-          importLoaders: 1,
-          localIdentName: '[name]__[local]___[hash:base64:5]',
-          modules: true,
-          sourceMap: true,
-        },
+        options: { sourceMap: true },
       },
       {
         loader: 'postcss-loader',
-        options: {
-          sourceMap: true,
-        },
+        options: { sourceMap: true },
+      },
+      {
+        loader: 'sass-loader',
+        options: { sourceMap: true },
       },
     ],
   },
@@ -54,18 +49,14 @@ module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
   entry: {
-    index: [
-      path.join(process.cwd(), 'src', 'entryPoints', 'index'),
-    ],
+    index: [path.join(process.cwd(), 'src', 'entryPoints', 'index')],
   },
   output: {
     path: path.join(process.cwd(), '.tmp', 'client'),
     filename: '[name].js',
     publicPath,
   },
-  resolve: { ...resolve, plugins: [
-    new TsconfigPathsPlugin(),
-  ]},
+  resolve: { ...resolve, plugins: [new TsconfigPathsPlugin()] },
   optimization,
   plugins: [
     ...plugins,
@@ -79,4 +70,3 @@ module.exports = {
     rules: [...rules, ...appendRules],
   },
 };
-

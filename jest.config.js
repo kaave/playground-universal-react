@@ -4,7 +4,6 @@ module.exports = {
   moduleFileExtensions: ['tsx', 'ts', 'js', 'json'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
-    '.+\\.(css|styl|less|sass|scss)$': '<rootDir>/../node_modules/jest-css-modules-transform',
   },
   testRegex: '\\.spec\\.(ts|tsx)$',
   moduleNameMapper: {
@@ -16,5 +15,5 @@ module.exports = {
     enzymeAdapter: 'react16',
   },
   collectCoverage: true,
-  collectCoverageFrom: ['src/**/*.ts', 'src/**/*.tsx', '!src/**/*.css', '!src/**/*.stories.*', '!src/**/*.d.ts'],
+  collectCoverageFrom: ['src/**/*.ts', 'src/**/*.tsx', '!src/**/*.scss', '!src/**/*.stories.*', '!src/**/*.d.ts'],
 };

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
-import Demo from './Index';
+import { DemoPage } from './Index';
 
-describe('<Demo />', () => {
+describe('<DemoPage />', () => {
   it('render "demo" string', () => {
-    const renderer = shallow(<Demo />);
+    const renderer = shallow(<DemoPage />);
     expect(renderer.text().indexOf('demo') !== -1).toBeTruthy();
   });
 });

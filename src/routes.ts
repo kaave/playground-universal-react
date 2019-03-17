@@ -4,7 +4,7 @@ import { RouteConfig } from 'react-router-config';
 import { Meta } from '~/value-objects/meta';
 import App, { meta as AppMeta } from './containers/App';
 import IndexPages, { meta as IndexMeta } from './components/pages/Index';
-import DemoPages, { meta as DemoMeta } from './components/pages/demo';
+import { DemoPage, meta as DemoMeta } from './components/pages/demo';
 import { types as Counts } from './reduxes/actions/counts';
 
 export type RunDispatch = (dispatch: Dispatch, params?: any) => void;
@@ -35,7 +35,7 @@ export default [
           dispatch({ type: Counts.add, payload: parseInt(params.count, 10) || 0 }),
         meta: IndexMeta,
       },
-      { component: DemoPages, path: '/demo', exact: true, meta: DemoMeta },
+      { component: DemoPage, path: '/demo', exact: true, meta: DemoMeta },
     ],
   } as unknown) as RouteConfigWithLoadData,
 ] as RouteConfigWithLoadData[];

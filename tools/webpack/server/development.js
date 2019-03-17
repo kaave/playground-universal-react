@@ -17,34 +17,29 @@ const appendRules = [
       {
         loader: 'ts-loader',
         options: {
-          transpileOnly: true
+          transpileOnly: true,
         },
       },
     ],
   },
   {
-    test: /\.css$/,
+    test: /\.scss$/,
     use: [
       {
         loader: 'isomorphic-style-loader',
-        options: {
-          sourceMap: true,
-        },
+        options: { sourceMap: true },
       },
       {
         loader: 'css-loader',
-        options: {
-          importLoaders: 1,
-          localIdentName: '[name]__[local]___[hash:base64:5]',
-          modules: true,
-          sourceMap: true,
-        },
+        options: { sourceMap: true },
       },
       {
         loader: 'postcss-loader',
-        options: {
-          sourceMap: true,
-        },
+        options: { sourceMap: true },
+      },
+      {
+        loader: 'sass-loader',
+        options: { sourceMap: true },
       },
     ],
   },
@@ -60,9 +55,7 @@ module.exports = {
     path: path.join(process.cwd(), '.tmp'),
     filename: 'server.js',
   },
-  resolve: { ...resolve, plugins: [
-    new TsconfigPathsPlugin(),
-  ]},
+  resolve: { ...resolve, plugins: [new TsconfigPathsPlugin()] },
   plugins: [
     ...plugins,
     new Dotenv(),
@@ -80,4 +73,3 @@ module.exports = {
   },
   externals: NodeExternals(),
 };
-

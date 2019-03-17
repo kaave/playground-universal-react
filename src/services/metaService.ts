@@ -68,7 +68,7 @@ function addMetaElement({ key, type, content }: { key: string; type: MetaType; c
   document.head.appendChild(meta);
 }
 
-export function updateMetaService(meta: Meta) {
+export function updateMeta(meta: Meta) {
   if (typeof document === 'undefined') {
     return;
   }

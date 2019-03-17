@@ -3,7 +3,7 @@ import * as React from 'react';
 import CSSModules from '~/utils/cssModules';
 import styles from './style.css';
 import * as Meta from '~/value-objects/meta';
-import { updateMetaService } from '~/services/updateMetaService';
+import { updateMeta } from '~/services/metaService';
 
 export const meta: Meta.Meta = Meta.create({
   title: 'demo page',
@@ -11,7 +11,7 @@ export const meta: Meta.Meta = Meta.create({
 });
 
 const DemoPage: React.FC<{}> = () => {
-  React.useEffect(() => updateMetaService(meta), []);
+  React.useEffect(() => updateMeta(meta), []);
 
   return (
     <section styleName="Demo" className="Demo">

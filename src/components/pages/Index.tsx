@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import * as Meta from '~/value-objects/meta';
-import { updateMetaService } from '~/services/updateMetaService';
+import { updateMeta } from '~/services/metaService';
 
 export const meta: Meta.Meta = Meta.create({
   title: 'root page',
@@ -10,7 +10,7 @@ export const meta: Meta.Meta = Meta.create({
 
 export default class IndexPage extends React.Component {
   componentDidMount() {
-    updateMetaService(meta);
+    updateMeta(meta);
   }
 
   render() {

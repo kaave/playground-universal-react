@@ -1,10 +1,8 @@
 const plugins = {
-  'postcss-import': {},
   'postcss-custom-properties': {},
-  'postcss-custom-media': {},
-  'postcss-nested': {},
   'postcss-color-hex-alpha': {},
-  'postcss-fixes': {},
+  'postcss-calc': {},
+  'postcss-flexbugs-fixes': {},
   'postcss-url': {},
   autoprefixer: { grid: true },
 };

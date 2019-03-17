@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { fromEvent } from 'rxjs';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
@@ -13,7 +12,7 @@ import { getStore } from '../reduxes/store';
 
 export const history = createHistory();
 
-fromEvent(window, 'DOMContentLoaded').subscribe(() => {
+window.addEventListener('DOMContentLoaded', () => {
   const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate;
   const mountPoint = document.getElementById('mount-point');
   if (!mountPoint) {

@@ -14,7 +14,7 @@ export const Error: React.FC<Props> = ({ lang, code, isProduction }) => (
       <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
       <title>{code}</title>
       <link rel="stylesheet" href="/global.css" />
-      {isProduction && <link rel="stylesheet" href="/index.css" />}
+      <link rel="stylesheet" href="/index.css" />
     </head>
     <body>
       <main id="main" className="Main" role="main">

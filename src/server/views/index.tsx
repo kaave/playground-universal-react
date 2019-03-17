@@ -23,7 +23,7 @@ export const Html: React.FC<Props> = ({ lang, meta, isProduction, preloadedState
       <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
       {meta && <Meta meta={meta} />}
       <link rel="stylesheet" href="/global.css" />
-      {isProduction && <link rel="stylesheet" href="/index.css" />}
+      <link rel="stylesheet" href="/index.css" />
     </head>
     <body>
       <div

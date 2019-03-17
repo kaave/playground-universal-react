@@ -197,4 +197,4 @@ tags
 # build files
 /.tmp
 /build
-/assets/global.css
+/assets/*.css

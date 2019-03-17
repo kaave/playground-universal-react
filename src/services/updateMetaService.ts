@@ -1,6 +1,6 @@
 import { Meta } from '~/value-objects/meta';
 
-interface HeadChildren {
+export interface HeadChildren {
   description: HTMLMetaElement;
   itemPropName: HTMLMetaElement;
   itemPropDescription: HTMLMetaElement;
@@ -19,7 +19,7 @@ interface HeadChildren {
 
 type MetaType = 'name' | 'itemprop' | 'property';
 
-function convertHeadChildrenToObject(elements: HTMLMetaElement[]): Partial<HeadChildren> {
+export function convertHeadChildrenToObject(elements: HTMLMetaElement[]): Partial<HeadChildren> {
   const result: Partial<HeadChildren> = {};
 
   elements.forEach(e => {

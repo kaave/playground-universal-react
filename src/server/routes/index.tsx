@@ -1,11 +1,12 @@
 import express from 'express';
 import * as React from 'react';
-import { renderToString, renderToStaticMarkup } from 'react-dom/server';
+import { renderToString, renderToStaticMarkup, renderToNodeStream } from 'react-dom/server';
 import { StaticRouter as Router } from 'react-router-dom';
 import { matchRoutes as getMatchRoutes, renderRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
 import createHistory from 'history/createMemoryHistory';
 
+import { Html, Props as HtmlProps } from '../views';
 import { Meta } from '~/value-objects/meta';
 import reactRoutes, { RouteConfigWithLoadData, RunDispatch } from '../../routes';
 import { getStore } from '../../reduxes/store';
@@ -48,17 +49,14 @@ router.get('*', async (req, res) => {
       .runSaga(rootSaga)
       .toPromise()
       .then(() => {
-        const markup = renderToString(App);
-        const preloadedState = JSON.stringify(store.getState());
-
-        res.render('index', {
-          markup,
-          title: meta.title || '',
-          // meta: helmet.meta.toString(),
-          meta: '',
-          preloadedState,
+        const props: HtmlProps = {
+          meta,
+          lang: 'ja',
           isProduction: process.env.NODE_ENV === 'production',
-        });
+          preloadedState: store.getState(),
+        };
+
+        res.send(`<!doctype html>${renderToStaticMarkup(<Html {...props}>{renderToString(App)}</Html>)}`);
       });
 
     renderToStaticMarkup(App); // start redux-saga

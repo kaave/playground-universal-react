@@ -55,13 +55,7 @@ router.get('*', async (req, res) => {
       .runSaga(rootSaga)
       .toPromise()
       .then(() => {
-        const props: HtmlProps = {
-          meta,
-          lang,
-          isProduction,
-          preloadedState: store.getState(),
-        };
-
+        const props: HtmlProps = { meta, lang, isProduction, preloadedState: store.getState() };
         responseWithDoctypeHtml(renderToStaticMarkup(<Html {...props}>{renderToString(App)}</Html>));
       });
 

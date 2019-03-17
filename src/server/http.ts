@@ -9,6 +9,7 @@ import expressSession from 'express-session';
 
 import { setApiRoutes } from './api';
 import router from './routes';
+import { registDevServer } from './registers/devServer';
 
 const isDevelopment = process.env.NODE_ENV === 'development' || false;
 const port = parseInt(process.env.PORT_HTTP || '', 10) || 3000;
@@ -17,27 +18,11 @@ const logFormat = winston.format.printf(
   info => `${format(new Date(), 'YYYY-MM-DD HH:mm:ss.SSS')} ${info.level}: ${info.meta.res.statusCode} ${info.message}`,
 );
 
-async function initializeDevServer(expressApp: express.Express) {
-  const { default: webpack } = await import('webpack');
-  const { default: webpackHotMiddleware } = await import('webpack-hot-middleware');
-  const { default: webpackDevMiddleware } = await import('webpack-dev-middleware');
-  const { default: webpackClientConfig } = await import('../../tools/webpack/client/development');
-
-  const compiler = webpack(webpackClientConfig as any);
-  expressApp.use(webpackHotMiddleware(compiler));
-  expressApp.use(
-    webpackDevMiddleware(compiler, {
-      noInfo: true,
-      publicPath: webpackClientConfig.output.publicPath,
-    }),
-  );
-}
-
 async function main() {
   const app = express.default();
 
   if (isDevelopment) {
-    await initializeDevServer(app);
+    await registDevServer(app);
     app.use(
       expressWinston.logger({
         transports: [new winston.transports.Console()],

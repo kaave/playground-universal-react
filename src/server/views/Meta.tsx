@@ -20,13 +20,13 @@ export const Meta: React.FC<Props> = ({ meta: { title, description, image, og, t
         <meta name="description" content={description} />,
         <meta itemProp="description" content={description} />,
         <meta property="og:description" content={description} />,
-        <meta property="twitter:description" content={description} />,
+        <meta name="twitter:description" content={description} />,
       ]}
 
       {image && [
         <meta itemProp="image" content={image} />,
         <meta property="og:image" content={image} />,
-        <meta property="twitter:image" content={image} />,
+        <meta name="twitter:image" content={image} />,
       ]}
 
       {og && og.type && <meta property="og:type" content={og.type} />}

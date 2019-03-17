@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Response } from 'express';
 import * as React from 'react';
 import { renderToString, renderToStaticMarkup, renderToNodeStream } from 'react-dom/server';
 import { StaticRouter as Router } from 'react-router-dom';
@@ -7,21 +7,27 @@ import { Provider } from 'react-redux';
 import createHistory from 'history/createMemoryHistory';
 
 import { Html, Props as HtmlProps } from '../views';
+import { Error } from '../views/Error';
 import { Meta } from '~/value-objects/meta';
 import reactRoutes, { RouteConfigWithLoadData, RunDispatch } from '../../routes';
 import { getStore } from '../../reduxes/store';
 import { rootSaga } from '../../reduxes/sagas';
 
 const router = express.Router();
+const lang = 'ja';
+const isProduction = process.env.NODE_ENV === 'production';
+
+const getResponseWithDoctypeHtml: (res: Response) => (markup: string) => Response = res => markup =>
+  res.send(`<!doctype html>${markup}`);
 
 router.get('*', async (req, res) => {
-  // tslint:disable-next-line prefer-const
   const url = req.baseUrl;
+  const responseWithDoctypeHtml = getResponseWithDoctypeHtml(res);
 
   const matchRoutes = getMatchRoutes(reactRoutes, url);
   const exactRoute = matchRoutes.find(({ match }) => match.isExact);
   if (!exactRoute) {
-    res.render('404');
+    responseWithDoctypeHtml(renderToStaticMarkup(<Error {...{ lang, code: 404, isProduction }} />));
     return;
   }
 
@@ -51,19 +57,19 @@ router.get('*', async (req, res) => {
       .then(() => {
         const props: HtmlProps = {
           meta,
-          lang: 'ja',
-          isProduction: process.env.NODE_ENV === 'production',
+          lang,
+          isProduction,
           preloadedState: store.getState(),
         };
 
-        res.send(`<!doctype html>${renderToStaticMarkup(<Html {...props}>{renderToString(App)}</Html>)}`);
+        responseWithDoctypeHtml(renderToStaticMarkup(<Html {...props}>{renderToString(App)}</Html>));
       });
 
     renderToStaticMarkup(App); // start redux-saga
     dispatches.forEach(func => func(store.dispatch, exactRoute.match.params));
     store.close(); // stop redux-saga
   } catch (error) {
-    res.render('500');
+    responseWithDoctypeHtml(renderToStaticMarkup(<Error {...{ lang, code: 500, isProduction }} />));
     console.error(error);
   }
 });

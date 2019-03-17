@@ -84,7 +84,7 @@ module.exports = {
         open: false,
         host: 'localhost',
         port: parseInt(process.env.PORT_DEV, 10) || 3000,
-        files: ['assets/**/*', 'src/views/**/*.ejs'],
+        files: ['assets/**/*'],
         proxy: `http://localhost:${parseInt(process.env.PORT_HTTP, 10) || 3000}`,
       },
       {

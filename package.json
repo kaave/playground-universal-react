@@ -39,24 +39,6 @@
     "not chrome 49",
     "not dead"
   ],
-  "lint-staged": {
-    "subTaskConcurrency": 1,
-    "linters": {
-      "*.{ts,tsx}": [
-        "eslint --fix",
-        "git add"
-      ],
-      "*.css": [
-        "prettier --write",
-        "stylelint",
-        "git add"
-      ],
-      "*.json": [
-        "prettier --write",
-        "git add"
-      ]
-    }
-  },
   "husky": {
     "hooks": {
       "pre-commit": "run-s typecheck safe-guard"

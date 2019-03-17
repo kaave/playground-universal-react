@@ -10,7 +10,7 @@ module.exports = {
   moduleNameMapper: {
     '^~/(.*)': '<rootDir>/$1',
   },
-  setupTestFrameworkScriptFile: 'jest-enzyme',
+  setupFilesAfterEnv: ['../node_modules/jest-enzyme/lib/index.js'],
   testEnvironment: 'enzyme',
   testEnvironmentOptions: {
     enzymeAdapter: 'react16',

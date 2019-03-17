@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import CSSModules from '~/utils/cssModules';
-import styles from './style.css';
-import * as Meta from '~/value-objects/Meta';
+// import CSSModules from '~/utils/cssModules';
+// import styles from './style.css';
+import * as Meta from '~/value-objects/meta';
 import { updateMetaService } from '~/services/updateMetaService';
 
 export const meta: Meta.Meta = Meta.create({

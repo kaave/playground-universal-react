@@ -6,7 +6,7 @@ import { matchRoutes as getMatchRoutes, renderRoutes } from 'react-router-config
 import { Provider } from 'react-redux';
 import createHistory from 'history/createMemoryHistory';
 
-import { Meta } from '~/value-objects/Meta';
+import { Meta } from '~/value-objects/meta';
 import reactRoutes, { RouteConfigWithLoadData, RunDispatch } from '../../routes';
 import { getStore } from '../../reduxes/store';
 import { rootSaga } from '../../reduxes/sagas';

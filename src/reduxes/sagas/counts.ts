@@ -17,10 +17,12 @@ const asyncDecrementWorker = bindAsyncAction(asyncDecrement)(function*(): SagaIt
 });
 
 export function* watchIncrementAsync(): SagaIterator {
+  // @ts-ignore: TODO
   yield takeEvery(types.asyncIncrement, asyncIncrementWorker);
 }
 
 export function* watchDecrementAsync(): SagaIterator {
+  // @ts-ignore: TODO
   yield takeEvery(types.asyncDecrement, asyncDecrementWorker);
 }
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import * as Meta from '~/value-objects/Meta';
+import * as Meta from '~/value-objects/meta';
 import { updateMetaService } from '~/services/updateMetaService';
 
 export const meta: Meta.Meta = Meta.create({

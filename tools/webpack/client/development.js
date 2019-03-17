@@ -6,7 +6,7 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const DotenvWebpack = require('dotenv-webpack');
 const Dotenv = require('dotenv');
 
-Dotenv.load();
+Dotenv.config();
 
 const { resolve, rules, plugins, optimization } = require('../base');
 

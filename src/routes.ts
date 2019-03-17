@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import { RouteConfig } from 'react-router-config';
 
-import { Meta } from '~/value-objects/Meta';
+import { Meta } from '~/value-objects/meta';
 import App, { meta as AppMeta } from './containers/App';
 import IndexPages, { meta as IndexMeta } from './components/pages/Index';
 import DemoPages, { meta as DemoMeta } from './components/pages/demo';

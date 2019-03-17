@@ -5,7 +5,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import format from 'date-fns/format';
 import { renderRoutes, RouteConfigComponentProps } from 'react-router-config';
 import { ConnectedRouterProps } from 'connected-react-router';
-import * as Meta from '~/value-objects/Meta';
+import * as Meta from '~/value-objects/meta';
 import { returntypeof } from 'react-redux-typescript';
 
 import { State } from '../reduxes/reducers';

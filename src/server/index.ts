@@ -4,7 +4,7 @@ import 'tslib';
 import { runHttp } from './http';
 import { runWS } from './websocket';
 
-// Dotenv.load();
+// Dotenv.config();
 
 runHttp();
 runWS();

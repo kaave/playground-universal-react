@@ -1,4 +1,4 @@
-import { Meta } from '~/value-objects/Meta';
+import { Meta } from '~/value-objects/meta';
 
 interface HeadChildren {
   description: HTMLMetaElement;

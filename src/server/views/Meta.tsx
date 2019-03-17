@@ -9,25 +9,31 @@ interface Props {
 export const Meta: React.FC<Props> = ({ meta: { title, description, image, og, twitter } }) => {
   return (
     <>
-      {title && [
-        <title>{title}</title>,
-        <meta itemProp="name" content={title} />,
-        <meta property="og:title" content={title} />,
-        <meta name="twitter:title" content={title} />,
-      ]}
+      {title && (
+        <>
+          <title>{title}</title>
+          <meta itemProp="name" content={title} />
+          <meta property="og:title" content={title} />
+          <meta name="twitter:title" content={title} />
+        </>
+      )}
 
-      {description && [
-        <meta name="description" content={description} />,
-        <meta itemProp="description" content={description} />,
-        <meta property="og:description" content={description} />,
-        <meta name="twitter:description" content={description} />,
-      ]}
+      {description && (
+        <>
+          <meta name="description" content={description} />
+          <meta itemProp="description" content={description} />
+          <meta property="og:description" content={description} />
+          <meta name="twitter:description" content={description} />
+        </>
+      )}
 
-      {image && [
-        <meta itemProp="image" content={image} />,
-        <meta property="og:image" content={image} />,
-        <meta name="twitter:image" content={image} />,
-      ]}
+      {image && (
+        <>
+          <meta itemProp="image" content={image} />
+          <meta property="og:image" content={image} />
+          <meta name="twitter:image" content={image} />
+        </>
+      )}
 
       {og && og.type && <meta property="og:type" content={og.type} />}
       {og && og.url && <meta property="og:url" content={og.url} />}

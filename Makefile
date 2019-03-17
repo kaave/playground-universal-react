@@ -3,7 +3,6 @@ _:
 
 init:
 	cp .env.example .env
-	cp .env.client.example .env.client
 	cp .env.server.example .env.server
 	yarn install
 	docker-compose build

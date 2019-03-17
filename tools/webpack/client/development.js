@@ -63,7 +63,6 @@ module.exports = {
   plugins: [
     ...plugins,
     new DotenvWebpack(),
-    new DotenvWebpack({ path: path.join(process.cwd(), '.env.client') }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new ForkTsCheckerWebpackPlugin(),

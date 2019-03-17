@@ -35,7 +35,6 @@ const publicPath = '/';
 const usePlugins = [
   ...plugins,
   new Dotenv(),
-  new Dotenv({ path: path.join(process.cwd(), '.env.client') }),
   new MiniCssExtractPlugin({
     filename: '[name].css',
     chunkFilename: '[id].css',

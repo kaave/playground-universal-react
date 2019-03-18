@@ -6,6 +6,6 @@ const router = Router();
 
 router.use('/users', users);
 
-export function setApiRoutes(app: Application) {
+export function registApi(app: Application) {
   app.use('/api', router);
 }

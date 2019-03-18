@@ -1,84 +1,33 @@
-import * as express from 'express';
-import compression from 'compression';
-import winston from 'winston';
-import expressWinston from 'express-winston';
-import format from 'date-fns/format';
-import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
-import expressSession from 'express-session';
+import express from 'express';
 
-import { setApiRoutes } from './api';
-import router from './routes';
+import { registApi } from './api';
+import { registRoutes } from './routes';
 import { registDevServer } from './registers/devServer';
+import { registLogger } from './registers/logger';
+import { registCompressor } from './registers/compressor';
+import { registParser } from './registers/parser';
+import { registSession } from './registers/session';
+import { registStatic } from './registers/static';
 
 const isDevelopment = process.env.NODE_ENV === 'development' || false;
 const port = parseInt(process.env.PORT_HTTP || '', 10) || 3000;
 
-const logFormat = winston.format.printf(
-  info => `${format(new Date(), 'YYYY-MM-DD HH:mm:ss.SSS')} ${info.level}: ${info.meta.res.statusCode} ${info.message}`,
-);
-
 async function main() {
-  const app = express.default();
+  const app = express();
 
   if (isDevelopment) {
     await registDevServer(app);
-    app.use(
-      expressWinston.logger({
-        transports: [new winston.transports.Console()],
-        format: winston.format.combine(logFormat),
-      }),
-    );
   } else {
-    app.use(express.static('./build/client'));
-    app.use(compression({ level: parseInt(process.env.COMPRESS_LEVEL || '', 10) || 9 }));
-    app.use(
-      expressWinston.logger({
-        transports: [
-          new winston.transports.Console(),
-          new winston.transports.File({ filename: `logs/${process.env.ACCESS_LOG || 'access.log'}` }),
-        ],
-        format: winston.format.combine(logFormat),
-        level: 'info',
-      }),
-    );
+    registCompressor(app);
   }
 
-  app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(bodyParser.json());
-  app.use(cookieParser());
-  app.use(
-    expressSession({
-      secret: process.env.SESSION_SECRET_KEY || '__SET_SESSION_SECRET_KEY_TO_DOTENV__',
-      resave: false,
-      saveUninitialized: true,
-      cookie: { httpOnly: !isDevelopment, maxAge: parseInt(process.env.COOKIE_MAX_AGE || '', 10) || 24 * 60 * 60 },
-      // save server session info to redis
-      // store: new RedisStore({
-      //   host: config.redis.host,
-      //   port: config.redis.port,
-      //   db: config.redis.db,
-      //   pass: config.redis.pass
-      // }),
-    }),
-  );
+  registLogger(app, isDevelopment);
+  registParser(app);
+  registSession(app, isDevelopment);
+  registStatic(app, isDevelopment);
+  registApi(app);
+  registRoutes(app);
 
-  app.use(express.static('./assets'));
-  setApiRoutes(app);
-
-  app.use('*', router);
-
-  if (!isDevelopment) {
-    app.use(
-      expressWinston.errorLogger({
-        transports: [
-          new winston.transports.Console(),
-          new winston.transports.File({ filename: `logs/${process.env.ERROR_LOG || 'error.log'}` }),
-        ],
-        format: winston.format.combine(logFormat),
-      }),
-    );
-  }
   app.listen(port);
 }
 

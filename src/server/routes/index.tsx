@@ -1,4 +1,4 @@
-import express, { Response } from 'express';
+import express, { Express, Response } from 'express';
 import * as React from 'react';
 import { renderToString, renderToStaticMarkup, renderToNodeStream } from 'react-dom/server';
 import { StaticRouter as Router } from 'react-router-dom';
@@ -67,5 +67,9 @@ router.get('*', async (req, res) => {
     console.error(error);
   }
 });
+
+export function registRoutes(app: Express) {
+  app.use('*', router);
+}
 
 export default router;

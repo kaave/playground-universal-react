@@ -8,6 +8,6 @@ export type State = Counts.State & RouterState;
 
 export const createRootReducer = (history: History) =>
   combineReducers({
-    ...Counts.reducers,
     router: connectRouter(history),
+    ...Counts.reducers,
   }); // FIXME: use any

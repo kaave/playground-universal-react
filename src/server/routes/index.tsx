@@ -42,7 +42,7 @@ router.get('*', async (req, res) => {
     .reduce<Meta>((tmp, m) => ({ ...tmp, ...m }), {});
 
   try {
-    const store = getStore({ initialState: {}, history: createHistory(), isServer: true });
+    const store = getStore({ initialState: {}, history: createHistory({ initialEntries: [url] }), isServer: true });
     const App = (
       <Provider store={store}>
         <Router location={url} context={{}}>
@@ -55,7 +55,8 @@ router.get('*', async (req, res) => {
       .runSaga(rootSaga)
       .toPromise()
       .then(() => {
-        const props: HtmlProps = { meta, lang, isProduction, preloadedState: store.getState() };
+        const preloadedState = store.getState();
+        const props: HtmlProps = { meta, lang, isProduction, preloadedState };
         responseWithDoctypeHtml(renderToStaticMarkup(<Html {...props}>{renderToString(App)}</Html>));
       });
 

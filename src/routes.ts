@@ -17,6 +17,7 @@ export interface RouteConfigWithLoadData extends RouteConfig {
 export default [
   ({
     component: App,
+    path: '/',
     meta: AppMeta,
     routes: [
       { component: IndexPages, path: '/', exact: true, meta: IndexMeta },

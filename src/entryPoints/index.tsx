@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
@@ -20,13 +19,11 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   const initialState = JSON.parse(mountPoint.getAttribute('data-state') || '{}');
-  const store = getStore({ initialState, history: createHistory() });
+  const store = getStore({ initialState, history });
 
   renderMethod(
     <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <Router>{renderRoutes(routes)}</Router>
-      </ConnectedRouter>
+      <ConnectedRouter history={history}>{renderRoutes(routes)}</ConnectedRouter>
     </Provider>,
     mountPoint,
   );

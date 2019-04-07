@@ -1,6 +1,5 @@
 import express from 'express';
 
-import { registApi } from './api';
 import { registRoutes } from './routes';
 import { registDevServer } from './registers/devServer';
 import { registLogger } from './registers/logger';
@@ -25,7 +24,6 @@ async function main() {
   registParser(app);
   registSession(app, isDevelopment);
   registStatic(app, isDevelopment);
-  registApi(app);
   registRoutes(app);
 
   app.listen(port);

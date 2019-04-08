@@ -8,7 +8,7 @@ export const meta: Meta.Meta = Meta.create({
   description: 'root page description',
 });
 
-export default class IndexPage extends React.Component {
+export class IndexPage extends React.Component {
   componentDidMount() {
     updateMeta(meta);
   }

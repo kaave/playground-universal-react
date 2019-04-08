@@ -6,7 +6,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import createHistory from 'history/createBrowserHistory';
 
 import { author } from '../consts';
-import routes from '../routes';
+import { routes } from '../routes';
 import { getStore } from '../reduxes/store';
 
 export const history = createHistory();

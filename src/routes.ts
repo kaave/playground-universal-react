@@ -2,8 +2,8 @@ import { Dispatch } from 'redux';
 import { RouteConfig } from 'react-router-config';
 
 import { Meta } from '~/value-objects/meta';
-import App, { meta as AppMeta } from './containers/App';
-import IndexPages, { meta as IndexMeta } from './components/pages/Index';
+import { App, meta as AppMeta } from './containers/App';
+import { IndexPage, meta as IndexMeta } from './components/pages/Index';
 import { DemoPage, meta as DemoMeta } from './components/pages/demo';
 import { types as Counts } from './reduxes/actions/counts';
 
@@ -14,22 +14,22 @@ export interface RouteConfigWithLoadData extends RouteConfig {
   meta?: Meta;
 }
 
-export default [
+export const routes = [
   ({
     component: App,
     path: '/',
     meta: AppMeta,
     routes: [
-      { component: IndexPages, path: '/', exact: true, meta: IndexMeta },
+      { component: IndexPage, path: '/', exact: true, meta: IndexMeta },
       {
-        component: IndexPages,
+        component: IndexPage,
         path: '/increment',
         exact: true,
         runDispatch: (dispatch: Dispatch) => dispatch({ type: Counts.asyncIncrement }),
         meta: IndexMeta,
       },
       {
-        component: IndexPages,
+        component: IndexPage,
         path: '/add/:count',
         exact: true,
         runDispatch: (dispatch: Dispatch, params: any) =>

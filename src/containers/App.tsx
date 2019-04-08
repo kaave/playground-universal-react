@@ -33,7 +33,7 @@ export interface AppState {
 
 export const meta: Meta.Meta = Meta.create({ title: 'base title' });
 
-class App extends React.Component<AppProps, AppState> {
+class AppComponent extends React.Component<AppProps, AppState> {
   state = { counter: 0, isModalOpen: false };
   intervalID?: NodeJS.Timer;
 
@@ -103,4 +103,4 @@ class App extends React.Component<AppProps, AppState> {
   }
 }
 
-export default connectToStore(App);
+export const App = connectToStore(AppComponent);

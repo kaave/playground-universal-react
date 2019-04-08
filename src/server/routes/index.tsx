@@ -9,11 +9,11 @@ import createHistory from 'history/createMemoryHistory';
 import { Html, Props as HtmlProps } from '../views';
 import { Error } from '../views/Error';
 import { Meta } from '~/value-objects/meta';
-import reactRoutes, { RouteConfigWithLoadData, RunDispatch } from '../../routes';
+import { routes as reactRoutes, RouteConfigWithLoadData, RunDispatch } from '../../routes';
 import { getStore } from '../../reduxes/store';
 import { rootSaga } from '../../reduxes/sagas';
 
-const router = express.Router();
+export const router = express.Router();
 const lang = 'ja';
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -72,5 +72,3 @@ router.get('*', async (req, res) => {
 export function registRoutes(app: Express) {
   app.use('*', router);
 }
-
-export default router;

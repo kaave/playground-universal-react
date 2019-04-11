@@ -1,3 +1,4 @@
+import { Component } from 'react';
 import { Dispatch } from 'redux';
 import { RouteConfig } from 'react-router-config';
 
@@ -8,15 +9,15 @@ import { DemoPage, meta as DemoMeta } from './components/pages/demo';
 import { types as Counts } from './reduxes/actions/counts';
 
 export type RunDispatch = (dispatch: Dispatch, params?: any) => void;
-export interface RouteConfigWithLoadData extends RouteConfig {
+export type RouteConfigWithLoadData = {
   runDispatch?: RunDispatch;
   routes?: RouteConfigWithLoadData[];
   meta?: Meta;
-}
+} & RouteConfig;
 
-export const routes = [
-  ({
-    component: App,
+export const routes: RouteConfigWithLoadData[] = [
+  {
+    component: App as any,
     path: '/',
     meta: AppMeta,
     routes: [
@@ -38,5 +39,5 @@ export const routes = [
       },
       { component: DemoPage, path: '/demo', exact: true, meta: DemoMeta },
     ],
-  } as unknown) as RouteConfigWithLoadData,
-] as RouteConfigWithLoadData[];
+  },
+];

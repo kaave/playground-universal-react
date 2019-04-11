@@ -7,7 +7,10 @@ export function registSession(app: Express, isDevelopment: boolean) {
       secret: process.env.SESSION_SECRET_KEY || '__SET_SESSION_SECRET_KEY_TO_DOTENV__',
       resave: false,
       saveUninitialized: true,
-      cookie: { httpOnly: !isDevelopment, maxAge: parseInt(process.env.COOKIE_MAX_AGE || '', 10) || 24 * 60 * 60 },
+      cookie: {
+        httpOnly: !isDevelopment,
+        maxAge: parseInt(process.env.COOKIE_MAX_AGE || '', 10) || 24 * 60 * 60,
+      },
       // save server session info to redis
       // store: new RedisStore({
       //   host: config.redis.host,

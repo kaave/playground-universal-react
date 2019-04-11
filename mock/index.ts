@@ -7,7 +7,7 @@ import { data } from './data';
 
 Dotenv.config();
 
-const port = parseInt(process.env.PORT_MOCK || '24680', 10);
+const port = parseInt(process.env.PORT_API || '24680', 10);
 const apiVersion = process.env.API_VERSION || 'v1';
 const server = jsonServer.create();
 const router = jsonServer.router(data);

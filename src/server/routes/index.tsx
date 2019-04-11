@@ -1,4 +1,5 @@
 import express, { Express, Response } from 'express';
+import axios from 'axios';
 import * as React from 'react';
 import { renderToString, renderToStaticMarkup, renderToNodeStream } from 'react-dom/server';
 import { StaticRouter as Router } from 'react-router-dom';
@@ -6,6 +7,7 @@ import { matchRoutes as getMatchRoutes, renderRoutes } from 'react-router-config
 import { Provider } from 'react-redux';
 import createHistory from 'history/createMemoryHistory';
 
+import * as Sign from './sign';
 import { Html, Props as HtmlProps } from '../views';
 import { Error } from '../views/Error';
 import { Meta } from '~/value-objects/meta';
@@ -70,5 +72,6 @@ router.get('*', async (req, res) => {
 });
 
 export function registRoutes(app: Express) {
+  Sign.regist(app);
   app.use('*', router);
 }

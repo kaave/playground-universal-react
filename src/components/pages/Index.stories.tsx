@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import Index from './Index';
+import { IndexPage } from './Index';
 
-storiesOf('Index', module).add('Index!', () => <Index />);
+storiesOf('Index', module).add('Index!', () => <IndexPage />);
